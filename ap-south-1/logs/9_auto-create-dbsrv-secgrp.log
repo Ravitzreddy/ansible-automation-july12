@@ -1,0 +1,517 @@
+ansible-playbook 2.8.2
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python3.6/site-packages/ansible
+  executable location = /usr/local/bin/ansible-playbook
+  python version = 3.6.8 (default, Apr  3 2019, 17:26:03) [GCC 8.2.1 20180905 (Red Hat 8.2.1-3)]
+Using /etc/ansible/ansible.cfg as config file
+setting up inventory plugins
+host_list declined parsing /etc/ansible/ec2.py as it did not pass it's verify_file() method
+Not replacing invalid character(s) "{'-'}" in group name (ap-south-1)
+Not replacing invalid character(s) "{'-'}" in group name (ap-south-1a)
+Not replacing invalid character(s) "{'-'}" in group name (ap-south-1b)
+Not replacing invalid character(s) "{'-'}" in group name (i-00ac71ad1008d63fb)
+Not replacing invalid character(s) "{'-'}" in group name (i-0b9e74a4ad87c2e84)
+Not replacing invalid character(s) "{'-'}" in group name (i-0eeac79ac21f81c6b)
+Parsed /etc/ansible/ec2.py inventory source with script plugin
+Loading callback plugin default of type stdout, v2.0 from /usr/local/lib/python3.6/site-packages/ansible/plugins/callback/default.py
+
+PLAYBOOK: 9_auto-create-dbsrv-secgrp.yaml ****************************************************************************************
+Positional arguments: /etc/ansible/ap-south-1/9_auto-create-dbsrv-secgrp.yaml
+verbosity: 4
+private_key_file: /home/ec2-user/mykeypair
+connection: smart
+timeout: 10
+become_method: sudo
+tags: ('all',)
+inventory: ('/etc/ansible/ec2.py',)
+extra_vars: ('@/etc/ansible/ap-south-1/group_vars/all7.yaml',)
+forks: 5
+1 plays in /etc/ansible/ap-south-1/9_auto-create-dbsrv-secgrp.yaml
+
+PLAY [localhost] *****************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************
+task path: /etc/ansible/ap-south-1/9_auto-create-dbsrv-secgrp.yaml:2
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562962824.3538604-115819068345770 `" && echo ansible-tmp-1562962824.3538604-115819068345770="` echo /root/.ansible/tmp/ansible-tmp-1562962824.3538604-115819068345770 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/system/setup.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-9195ncseq407/tmpdkfvh2ho TO /root/.ansible/tmp/ansible-tmp-1562962824.3538604-115819068345770/AnsiballZ_setup.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962824.3538604-115819068345770/ /root/.ansible/tmp/ansible-tmp-1562962824.3538604-115819068345770/AnsiballZ_setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562962824.3538604-115819068345770/AnsiballZ_setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562962824.3538604-115819068345770/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost]
+META: ran handlers
+
+TASK [create appserver sec groups] ***********************************************************************************************
+task path: /etc/ansible/ap-south-1/9_auto-create-dbsrv-secgrp.yaml:6
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562962825.3558114-75151260213233 `" && echo ansible-tmp-1562962825.3558114-75151260213233="` echo /root/.ansible/tmp/ansible-tmp-1562962825.3558114-75151260213233 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_group.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-9195ncseq407/tmptbbegbx_ TO /root/.ansible/tmp/ansible-tmp-1562962825.3558114-75151260213233/AnsiballZ_ec2_group.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962825.3558114-75151260213233/ /root/.ansible/tmp/ansible-tmp-1562962825.3558114-75151260213233/AnsiballZ_ec2_group.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562962825.3558114-75151260213233/AnsiballZ_ec2_group.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562962825.3558114-75151260213233/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item=[{'secgrpname': 'dbinst-vpca'}, {'secgrpdesc': 'sec grp for app servers for vpca', 'secvpcid': 'vpc-03f14f659c6c1c8b7', 'secregion': 'ap-south-1', 'sectarget1': '10.0.2.144/32', 'sectarget2': '10.0.1.167/32', 'sectarget3': '10.0.5.37/32'}]) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "description": "sec grp for app servers for vpca",
+    "group_id": "sg-0f921263798b4ac94",
+    "group_name": "dbinst-vpca",
+    "invocation": {
+        "module_args": {
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "debug_botocore_endpoint_logs": false,
+            "description": "sec grp for app servers for vpca",
+            "ec2_url": null,
+            "group_id": null,
+            "name": "dbinst-vpca",
+            "profile": null,
+            "purge_rules": true,
+            "purge_rules_egress": true,
+            "purge_tags": true,
+            "region": "ap-south-1",
+            "rules": [
+                {
+                    "cidr_ip": "10.0.2.144/32",
+                    "from_port": 3389,
+                    "proto": "tcp",
+                    "to_port": 3389
+                },
+                {
+                    "cidr_ip": "10.0.1.167/32",
+                    "from_port": 3389,
+                    "proto": "tcp",
+                    "to_port": 3389
+                },
+                {
+                    "cidr_ip": "10.0.2.144/32",
+                    "from_port": 3306,
+                    "proto": "tcp",
+                    "to_port": 3306
+                },
+                {
+                    "cidr_ip": "10.0.1.167/32",
+                    "from_port": 3306,
+                    "proto": "tcp",
+                    "to_port": 3306
+                },
+                {
+                    "cidr_ip": "10.0.2.144/32",
+                    "from_port": 22,
+                    "proto": "tcp",
+                    "to_port": 22
+                },
+                {
+                    "cidr_ip": "10.0.1.167/32",
+                    "from_port": 22,
+                    "proto": "tcp",
+                    "to_port": 22
+                }
+            ],
+            "rules_egress": [
+                {
+                    "cidr_ip": "10.0.2.144/32",
+                    "from_port": 80,
+                    "proto": "tcp",
+                    "to_port": 80
+                },
+                {
+                    "cidr_ip": "10.0.1.167/32",
+                    "from_port": 80,
+                    "proto": "tcp",
+                    "to_port": 80
+                }
+            ],
+            "security_token": null,
+            "state": "present",
+            "tags": null,
+            "validate_certs": true,
+            "vpc_id": "vpc-03f14f659c6c1c8b7"
+        }
+    },
+    "ip_permissions": [
+        {
+            "from_port": 22,
+            "ip_protocol": "tcp",
+            "ip_ranges": [
+                {
+                    "cidr_ip": "10.0.1.167/32"
+                },
+                {
+                    "cidr_ip": "10.0.2.144/32"
+                }
+            ],
+            "ipv6_ranges": [],
+            "prefix_list_ids": [],
+            "to_port": 22,
+            "user_id_group_pairs": []
+        },
+        {
+            "from_port": 3306,
+            "ip_protocol": "tcp",
+            "ip_ranges": [
+                {
+                    "cidr_ip": "10.0.1.167/32"
+                },
+                {
+                    "cidr_ip": "10.0.2.144/32"
+                }
+            ],
+            "ipv6_ranges": [],
+            "prefix_list_ids": [],
+            "to_port": 3306,
+            "user_id_group_pairs": []
+        },
+        {
+            "from_port": 3389,
+            "ip_protocol": "tcp",
+            "ip_ranges": [
+                {
+                    "cidr_ip": "10.0.2.144/32"
+                },
+                {
+                    "cidr_ip": "10.0.1.167/32"
+                }
+            ],
+            "ipv6_ranges": [],
+            "prefix_list_ids": [],
+            "to_port": 3389,
+            "user_id_group_pairs": []
+        }
+    ],
+    "ip_permissions_egress": [
+        {
+            "from_port": 80,
+            "ip_protocol": "tcp",
+            "ip_ranges": [
+                {
+                    "cidr_ip": "10.0.2.144/32"
+                },
+                {
+                    "cidr_ip": "10.0.1.167/32"
+                }
+            ],
+            "ipv6_ranges": [],
+            "prefix_list_ids": [],
+            "to_port": 80,
+            "user_id_group_pairs": []
+        }
+    ],
+    "item": [
+        {
+            "secgrpname": "dbinst-vpca"
+        },
+        {
+            "secgrpdesc": "sec grp for app servers for vpca",
+            "secregion": "ap-south-1",
+            "sectarget1": "10.0.2.144/32",
+            "sectarget2": "10.0.1.167/32",
+            "sectarget3": "10.0.5.37/32",
+            "secvpcid": "vpc-03f14f659c6c1c8b7"
+        }
+    ],
+    "owner_id": "802778636482",
+    "tags": {},
+    "vpc_id": "vpc-03f14f659c6c1c8b7"
+}
+
+TASK [set facts of dbservers_group] **********************************************************************************************
+task path: /etc/ansible/ap-south-1/9_auto-create-dbsrv-secgrp.yaml:52
+ok: [localhost] => (item={'changed': True, 'description': 'sec grp for app servers for vpca', 'group_name': 'dbinst-vpca', 'ip_permissions': [{'from_port': 22, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '10.0.1.167/32'}, {'cidr_ip': '10.0.2.144/32'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 22, 'user_id_group_pairs': []}, {'from_port': 3306, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '10.0.1.167/32'}, {'cidr_ip': '10.0.2.144/32'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 3306, 'user_id_group_pairs': []}, {'from_port': 3389, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '10.0.2.144/32'}, {'cidr_ip': '10.0.1.167/32'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 3389, 'user_id_group_pairs': []}], 'owner_id': '802778636482', 'group_id': 'sg-0f921263798b4ac94', 'ip_permissions_egress': [{'from_port': 80, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '10.0.2.144/32'}, {'cidr_ip': '10.0.1.167/32'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 80, 'user_id_group_pairs': []}], 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'tags': {}, 'invocation': {'module_args': {'name': 'dbinst-vpca', 'description': 'sec grp for app servers for vpca', 'region': 'ap-south-1', 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'rules': [{'proto': 'tcp', 'from_port': 3389, 'to_port': 3389, 'cidr_ip': '10.0.2.144/32'}, {'proto': 'tcp', 'from_port': 3389, 'to_port': 3389, 'cidr_ip': '10.0.1.167/32'}, {'proto': 'tcp', 'from_port': 3306, 'to_port': 3306, 'cidr_ip': '10.0.2.144/32'}, {'proto': 'tcp', 'from_port': 3306, 'to_port': 3306, 'cidr_ip': '10.0.1.167/32'}, {'proto': 'tcp', 'from_port': 22, 'to_port': 22, 'cidr_ip': '10.0.2.144/32'}, {'proto': 'tcp', 'from_port': 22, 'to_port': 22, 'cidr_ip': '10.0.1.167/32'}], 'rules_egress': [{'proto': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_ip': '10.0.2.144/32'}, {'proto': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_ip': '10.0.1.167/32'}], 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'state': 'present', 'purge_rules': True, 'purge_rules_egress': True, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'group_id': None, 'tags': None}}, 'failed': False, 'item': [{'secgrpname': 'dbinst-vpca'}, {'secgrpdesc': 'sec grp for app servers for vpca', 'secvpcid': 'vpc-03f14f659c6c1c8b7', 'secregion': 'ap-south-1', 'sectarget1': '10.0.2.144/32', 'sectarget2': '10.0.1.167/32', 'sectarget3': '10.0.5.37/32'}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "apsouth1_dbsecgrps": {
+            "dbinst-vpca": "sg-0f921263798b4ac94"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": true,
+        "description": "sec grp for app servers for vpca",
+        "failed": false,
+        "group_id": "sg-0f921263798b4ac94",
+        "group_name": "dbinst-vpca",
+        "invocation": {
+            "module_args": {
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "debug_botocore_endpoint_logs": false,
+                "description": "sec grp for app servers for vpca",
+                "ec2_url": null,
+                "group_id": null,
+                "name": "dbinst-vpca",
+                "profile": null,
+                "purge_rules": true,
+                "purge_rules_egress": true,
+                "purge_tags": true,
+                "region": "ap-south-1",
+                "rules": [
+                    {
+                        "cidr_ip": "10.0.2.144/32",
+                        "from_port": 3389,
+                        "proto": "tcp",
+                        "to_port": 3389
+                    },
+                    {
+                        "cidr_ip": "10.0.1.167/32",
+                        "from_port": 3389,
+                        "proto": "tcp",
+                        "to_port": 3389
+                    },
+                    {
+                        "cidr_ip": "10.0.2.144/32",
+                        "from_port": 3306,
+                        "proto": "tcp",
+                        "to_port": 3306
+                    },
+                    {
+                        "cidr_ip": "10.0.1.167/32",
+                        "from_port": 3306,
+                        "proto": "tcp",
+                        "to_port": 3306
+                    },
+                    {
+                        "cidr_ip": "10.0.2.144/32",
+                        "from_port": 22,
+                        "proto": "tcp",
+                        "to_port": 22
+                    },
+                    {
+                        "cidr_ip": "10.0.1.167/32",
+                        "from_port": 22,
+                        "proto": "tcp",
+                        "to_port": 22
+                    }
+                ],
+                "rules_egress": [
+                    {
+                        "cidr_ip": "10.0.2.144/32",
+                        "from_port": 80,
+                        "proto": "tcp",
+                        "to_port": 80
+                    },
+                    {
+                        "cidr_ip": "10.0.1.167/32",
+                        "from_port": 80,
+                        "proto": "tcp",
+                        "to_port": 80
+                    }
+                ],
+                "security_token": null,
+                "state": "present",
+                "tags": null,
+                "validate_certs": true,
+                "vpc_id": "vpc-03f14f659c6c1c8b7"
+            }
+        },
+        "ip_permissions": [
+            {
+                "from_port": 22,
+                "ip_protocol": "tcp",
+                "ip_ranges": [
+                    {
+                        "cidr_ip": "10.0.1.167/32"
+                    },
+                    {
+                        "cidr_ip": "10.0.2.144/32"
+                    }
+                ],
+                "ipv6_ranges": [],
+                "prefix_list_ids": [],
+                "to_port": 22,
+                "user_id_group_pairs": []
+            },
+            {
+                "from_port": 3306,
+                "ip_protocol": "tcp",
+                "ip_ranges": [
+                    {
+                        "cidr_ip": "10.0.1.167/32"
+                    },
+                    {
+                        "cidr_ip": "10.0.2.144/32"
+                    }
+                ],
+                "ipv6_ranges": [],
+                "prefix_list_ids": [],
+                "to_port": 3306,
+                "user_id_group_pairs": []
+            },
+            {
+                "from_port": 3389,
+                "ip_protocol": "tcp",
+                "ip_ranges": [
+                    {
+                        "cidr_ip": "10.0.2.144/32"
+                    },
+                    {
+                        "cidr_ip": "10.0.1.167/32"
+                    }
+                ],
+                "ipv6_ranges": [],
+                "prefix_list_ids": [],
+                "to_port": 3389,
+                "user_id_group_pairs": []
+            }
+        ],
+        "ip_permissions_egress": [
+            {
+                "from_port": 80,
+                "ip_protocol": "tcp",
+                "ip_ranges": [
+                    {
+                        "cidr_ip": "10.0.2.144/32"
+                    },
+                    {
+                        "cidr_ip": "10.0.1.167/32"
+                    }
+                ],
+                "ipv6_ranges": [],
+                "prefix_list_ids": [],
+                "to_port": 80,
+                "user_id_group_pairs": []
+            }
+        ],
+        "item": [
+            {
+                "secgrpname": "dbinst-vpca"
+            },
+            {
+                "secgrpdesc": "sec grp for app servers for vpca",
+                "secregion": "ap-south-1",
+                "sectarget1": "10.0.2.144/32",
+                "sectarget2": "10.0.1.167/32",
+                "sectarget3": "10.0.5.37/32",
+                "secvpcid": "vpc-03f14f659c6c1c8b7"
+            }
+        ],
+        "owner_id": "802778636482",
+        "tags": {},
+        "vpc_id": "vpc-03f14f659c6c1c8b7"
+    }
+}
+
+TASK [debugapsouth1_dbsecgrps] ***************************************************************************************************
+task path: /etc/ansible/ap-south-1/9_auto-create-dbsrv-secgrp.yaml:57
+ok: [localhost] => (item={'key': 'dbinst-vpca', 'value': 'sg-0f921263798b4ac94'}) => {
+    "msg": "dbinst-vpca : sg-0f921263798b4ac94"
+}
+
+TASK [copy var file all7.yaml to all8.yaml] **************************************************************************************
+task path: /etc/ansible/ap-south-1/9_auto-create-dbsrv-secgrp.yaml:64
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712 `" && echo ansible-tmp-1562962831.361149-14589816170712="` echo /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/stat.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-9195ncseq407/tmp8l7mz5y9 TO /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/AnsiballZ_stat.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/ /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/AnsiballZ_stat.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/AnsiballZ_stat.py && sleep 0'
+<127.0.0.1> PUT /etc/ansible/ap-south-1/group_vars/all7.yaml TO /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/source
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/ /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/source && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/copy.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-9195ncseq407/tmphgw6q4qp TO /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/AnsiballZ_copy.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/ /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/AnsiballZ_copy.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/AnsiballZ_copy.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => {
+    "changed": true,
+    "checksum": "3bc387912ae31b6cd81729ca0562b9522d35c7b0",
+    "dest": "/etc/ansible/ap-south-1/group_vars/all8.yaml",
+    "diff": [],
+    "gid": 0,
+    "group": "root",
+    "invocation": {
+        "module_args": {
+            "_original_basename": "all7.yaml",
+            "attributes": null,
+            "backup": false,
+            "checksum": "3bc387912ae31b6cd81729ca0562b9522d35c7b0",
+            "content": null,
+            "delimiter": null,
+            "dest": "/etc/ansible/ap-south-1/group_vars/all8.yaml",
+            "directory_mode": null,
+            "follow": true,
+            "force": true,
+            "group": null,
+            "local_follow": null,
+            "mode": null,
+            "owner": null,
+            "regexp": null,
+            "remote_src": null,
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": "/root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/source",
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "md5sum": "a9ed03666026d8427712f3c902b0ef6f",
+    "mode": "0644",
+    "owner": "root",
+    "secontext": "system_u:object_r:etc_t:s0",
+    "size": 7073,
+    "src": "/root/.ansible/tmp/ansible-tmp-1562962831.361149-14589816170712/source",
+    "state": "file",
+    "uid": 0
+}
+
+TASK [replace dbwebserv sec grp names with sec grp ids in var file all8.yaml] ****************************************************
+task path: /etc/ansible/ap-south-1/9_auto-create-dbsrv-secgrp.yaml:72
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562962832.148707-40733610241160 `" && echo ansible-tmp-1562962832.148707-40733610241160="` echo /root/.ansible/tmp/ansible-tmp-1562962832.148707-40733610241160 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-9195ncseq407/tmptob15eos TO /root/.ansible/tmp/ansible-tmp-1562962832.148707-40733610241160/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962832.148707-40733610241160/ /root/.ansible/tmp/ansible-tmp-1562962832.148707-40733610241160/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562962832.148707-40733610241160/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562962832.148707-40733610241160/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item={'key': 'dbinst-vpca', 'value': 'sg-0f921263798b4ac94'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all8.yaml",
+            "regexp": "dbinst-vpca",
+            "remote_src": null,
+            "replace": "sg-0f921263798b4ac94",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "dbinst-vpca",
+        "value": "sg-0f921263798b4ac94"
+    },
+    "msg": "2 replacements made"
+}
+META: ran handlers
+META: ran handlers
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

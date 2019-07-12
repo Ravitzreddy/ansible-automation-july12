@@ -1,0 +1,243 @@
+ansible-playbook 2.8.2
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python3.6/site-packages/ansible
+  executable location = /usr/local/bin/ansible-playbook
+  python version = 3.6.8 (default, Apr  3 2019, 17:26:03) [GCC 8.2.1 20180905 (Red Hat 8.2.1-3)]
+Using /etc/ansible/ansible.cfg as config file
+setting up inventory plugins
+host_list declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+script declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+auto declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+yaml declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+ini declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+toml declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Loading callback plugin default of type stdout, v2.0 from /usr/local/lib/python3.6/site-packages/ansible/plugins/callback/default.py
+
+PLAYBOOK: 5_auto-ngw-routes.yaml ********************************************************************************************************
+Positional arguments: /etc/ansible/ap-south-1/5_auto-ngw-routes.yaml
+verbosity: 4
+private_key_file: /home/ec2-user/mykeypair
+connection: smart
+timeout: 10
+become_method: sudo
+tags: ('all',)
+inventory: ('/etc/ansible/ap-south-1/ec2.py',)
+extra_vars: ('@/etc/ansible/ap-south-1/group_vars/all4.yaml',)
+forks: 5
+1 plays in /etc/ansible/ap-south-1/5_auto-ngw-routes.yaml
+
+PLAY [localhost] ************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************
+task path: /etc/ansible/ap-south-1/5_auto-ngw-routes.yaml:2
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956850.9304516-235668056148965 `" && echo ansible-tmp-1562956850.9304516-235668056148965="` echo /root/.ansible/tmp/ansible-tmp-1562956850.9304516-235668056148965 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/system/setup.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-14728wi08d5zq/tmphk5uxknr TO /root/.ansible/tmp/ansible-tmp-1562956850.9304516-235668056148965/AnsiballZ_setup.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956850.9304516-235668056148965/ /root/.ansible/tmp/ansible-tmp-1562956850.9304516-235668056148965/AnsiballZ_setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956850.9304516-235668056148965/AnsiballZ_setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956850.9304516-235668056148965/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost]
+META: ran handlers
+
+TASK [create route record for nat instances] ********************************************************************************************
+task path: /etc/ansible/ap-south-1/5_auto-ngw-routes.yaml:6
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956851.9277432-273924057236593 `" && echo ansible-tmp-1562956851.9277432-273924057236593="` echo /root/.ansible/tmp/ansible-tmp-1562956851.9277432-273924057236593 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_vpc_route_table.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-14728wi08d5zq/tmph3qjhv2_ TO /root/.ansible/tmp/ansible-tmp-1562956851.9277432-273924057236593/AnsiballZ_ec2_vpc_route_table.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956851.9277432-273924057236593/ /root/.ansible/tmp/ansible-tmp-1562956851.9277432-273924057236593/AnsiballZ_ec2_vpc_route_table.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956851.9277432-273924057236593/AnsiballZ_ec2_vpc_route_table.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956851.9277432-273924057236593/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item=[{'routename': 'rtb-02da1abaac5feb384'}, {'ngrvpc': 'vpc-03f14f659c6c1c8b7', 'ngrvpccidr': '10.0.0.0/16', 'ngrregion': 'ap-south-1', 'ngrsubnet': 'subnet-0f4ad444fd5ce1395', 'ngrgatewayid': 'nat-0f18b383f78d173dd', 'ngrrouteid': 'rtb-02da1abaac5feb384'}]) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "debug_botocore_endpoint_logs": false,
+            "ec2_url": null,
+            "lookup": "id",
+            "profile": null,
+            "propagating_vgw_ids": null,
+            "purge_routes": true,
+            "purge_subnets": false,
+            "purge_tags": false,
+            "region": "ap-south-1",
+            "route_table_id": "rtb-02da1abaac5feb384",
+            "routes": [
+                {
+                    "destination_cidr_block": "0.0.0.0/0",
+                    "nat_gateway_id": "nat-0f18b383f78d173dd"
+                }
+            ],
+            "security_token": null,
+            "state": "present",
+            "subnets": [
+                "subnet-0f4ad444fd5ce1395"
+            ],
+            "tags": {
+                "Name": "rtb-02da1abaac5feb384"
+            },
+            "validate_certs": true,
+            "vpc_id": "vpc-03f14f659c6c1c8b7"
+        }
+    },
+    "item": [
+        {
+            "routename": "rtb-02da1abaac5feb384"
+        },
+        {
+            "ngrgatewayid": "nat-0f18b383f78d173dd",
+            "ngrregion": "ap-south-1",
+            "ngrrouteid": "rtb-02da1abaac5feb384",
+            "ngrsubnet": "subnet-0f4ad444fd5ce1395",
+            "ngrvpc": "vpc-03f14f659c6c1c8b7",
+            "ngrvpccidr": "10.0.0.0/16"
+        }
+    ],
+    "route_table": {
+        "associations": [
+            {
+                "main": false,
+                "route_table_association_id": "rtbassoc-0e07516c33e53b087",
+                "route_table_id": "rtb-02da1abaac5feb384",
+                "subnet_id": "subnet-0f4ad444fd5ce1395"
+            },
+            {
+                "main": true,
+                "route_table_association_id": "rtbassoc-00fa07c058b5a3b20",
+                "route_table_id": "rtb-02da1abaac5feb384"
+            }
+        ],
+        "id": "rtb-02da1abaac5feb384",
+        "owner_id": "802778636482",
+        "propagating_vgws": [],
+        "route_table_id": "rtb-02da1abaac5feb384",
+        "routes": [
+            {
+                "destination_cidr_block": "10.0.0.0/16",
+                "gateway_id": "local",
+                "origin": "CreateRouteTable",
+                "state": "active"
+            },
+            {
+                "destination_cidr_block": "0.0.0.0/0",
+                "nat_gateway_id": "nat-0f18b383f78d173dd",
+                "origin": "CreateRoute",
+                "state": "active"
+            }
+        ],
+        "tags": {
+            "Name": "rtb-02da1abaac5feb384"
+        },
+        "vpc_id": "vpc-03f14f659c6c1c8b7"
+    }
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956858.423669-249516005535703 `" && echo ansible-tmp-1562956858.423669-249516005535703="` echo /root/.ansible/tmp/ansible-tmp-1562956858.423669-249516005535703 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_vpc_route_table.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-14728wi08d5zq/tmpxz6srg0b TO /root/.ansible/tmp/ansible-tmp-1562956858.423669-249516005535703/AnsiballZ_ec2_vpc_route_table.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956858.423669-249516005535703/ /root/.ansible/tmp/ansible-tmp-1562956858.423669-249516005535703/AnsiballZ_ec2_vpc_route_table.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956858.423669-249516005535703/AnsiballZ_ec2_vpc_route_table.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956858.423669-249516005535703/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item=[{'routename': 'rtb-0bdef42582a46c252'}, {'ngrvpc': 'vpc-0195c1d6ee5610e98', 'ngrvpccidr': '10.1.0.0/16', 'ngrregion': 'ap-south-1', 'ngrsubnet': 'subnet-0b31ab7d107a97433', 'ngrgatewayid': 'nat-0fcb692b957ab4d75', 'ngrrouteid': 'rtb-0bdef42582a46c252'}]) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "debug_botocore_endpoint_logs": false,
+            "ec2_url": null,
+            "lookup": "id",
+            "profile": null,
+            "propagating_vgw_ids": null,
+            "purge_routes": true,
+            "purge_subnets": false,
+            "purge_tags": false,
+            "region": "ap-south-1",
+            "route_table_id": "rtb-0bdef42582a46c252",
+            "routes": [
+                {
+                    "destination_cidr_block": "0.0.0.0/0",
+                    "nat_gateway_id": "nat-0fcb692b957ab4d75"
+                }
+            ],
+            "security_token": null,
+            "state": "present",
+            "subnets": [
+                "subnet-0b31ab7d107a97433"
+            ],
+            "tags": {
+                "Name": "rtb-0bdef42582a46c252"
+            },
+            "validate_certs": true,
+            "vpc_id": "vpc-0195c1d6ee5610e98"
+        }
+    },
+    "item": [
+        {
+            "routename": "rtb-0bdef42582a46c252"
+        },
+        {
+            "ngrgatewayid": "nat-0fcb692b957ab4d75",
+            "ngrregion": "ap-south-1",
+            "ngrrouteid": "rtb-0bdef42582a46c252",
+            "ngrsubnet": "subnet-0b31ab7d107a97433",
+            "ngrvpc": "vpc-0195c1d6ee5610e98",
+            "ngrvpccidr": "10.1.0.0/16"
+        }
+    ],
+    "route_table": {
+        "associations": [
+            {
+                "main": false,
+                "route_table_association_id": "rtbassoc-041f1b8d82e98c627",
+                "route_table_id": "rtb-0bdef42582a46c252",
+                "subnet_id": "subnet-0b31ab7d107a97433"
+            },
+            {
+                "main": true,
+                "route_table_association_id": "rtbassoc-04e7422abcafdcb1e",
+                "route_table_id": "rtb-0bdef42582a46c252"
+            }
+        ],
+        "id": "rtb-0bdef42582a46c252",
+        "owner_id": "802778636482",
+        "propagating_vgws": [],
+        "route_table_id": "rtb-0bdef42582a46c252",
+        "routes": [
+            {
+                "destination_cidr_block": "10.1.0.0/16",
+                "gateway_id": "local",
+                "origin": "CreateRouteTable",
+                "state": "active"
+            },
+            {
+                "destination_cidr_block": "0.0.0.0/0",
+                "nat_gateway_id": "nat-0fcb692b957ab4d75",
+                "origin": "CreateRoute",
+                "state": "active"
+            }
+        ],
+        "tags": {
+            "Name": "rtb-0bdef42582a46c252"
+        },
+        "vpc_id": "vpc-0195c1d6ee5610e98"
+    }
+}
+META: ran handlers
+META: ran handlers
+
+PLAY RECAP ******************************************************************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

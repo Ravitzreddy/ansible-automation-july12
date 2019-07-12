@@ -1,0 +1,1067 @@
+ansible-playbook 2.8.2
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python3.6/site-packages/ansible
+  executable location = /usr/local/bin/ansible-playbook
+  python version = 3.6.8 (default, Apr  3 2019, 17:26:03) [GCC 8.2.1 20180905 (Red Hat 8.2.1-3)]
+Using /etc/ansible/ansible.cfg as config file
+setting up inventory plugins
+host_list declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+script declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+auto declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+yaml declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+ini declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+toml declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Loading callback plugin default of type stdout, v2.0 from /usr/local/lib/python3.6/site-packages/ansible/plugins/callback/default.py
+
+PLAYBOOK: 4_auto-ngw.yaml ***************************************************************************************************************
+Positional arguments: /etc/ansible/ap-south-1/4_auto-ngw.yaml
+verbosity: 4
+private_key_file: /home/ec2-user/mykeypair
+connection: smart
+timeout: 10
+become_method: sudo
+tags: ('all',)
+inventory: ('/etc/ansible/ap-south-1/ec2.py',)
+extra_vars: ('@/etc/ansible/ap-south-1/group_vars/all3.yaml',)
+forks: 5
+1 plays in /etc/ansible/ap-south-1/4_auto-ngw.yaml
+
+PLAY [localhost] ************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************
+task path: /etc/ansible/ap-south-1/4_auto-ngw.yaml:2
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956177.7209752-228060171295884 `" && echo ansible-tmp-1562956177.7209752-228060171295884="` echo /root/.ansible/tmp/ansible-tmp-1562956177.7209752-228060171295884 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/system/setup.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-10345l_ry3v47/tmp25wvv05o TO /root/.ansible/tmp/ansible-tmp-1562956177.7209752-228060171295884/AnsiballZ_setup.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956177.7209752-228060171295884/ /root/.ansible/tmp/ansible-tmp-1562956177.7209752-228060171295884/AnsiballZ_setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956177.7209752-228060171295884/AnsiballZ_setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956177.7209752-228060171295884/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost]
+META: ran handlers
+
+TASK [create network gateway for private subnet] ****************************************************************************************
+task path: /etc/ansible/ap-south-1/4_auto-ngw.yaml:6
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956178.7318463-264213772869664 `" && echo ansible-tmp-1562956178.7318463-264213772869664="` echo /root/.ansible/tmp/ansible-tmp-1562956178.7318463-264213772869664 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_vpc_nat_gateway.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-10345l_ry3v47/tmp_0ndrjxg TO /root/.ansible/tmp/ansible-tmp-1562956178.7318463-264213772869664/AnsiballZ_ec2_vpc_nat_gateway.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956178.7318463-264213772869664/ /root/.ansible/tmp/ansible-tmp-1562956178.7318463-264213772869664/AnsiballZ_ec2_vpc_nat_gateway.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956178.7318463-264213772869664/AnsiballZ_ec2_vpc_nat_gateway.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956178.7318463-264213772869664/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item=[{'natgatewayname': 'SUB3-PRIV-VPCA-NATGW'}, {'ngsubnet': 'subnet-0e6eaab33cdc394d6', 'ngregion': 'ap-south-1'}]) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "create_time": "2019-07-12T18:29:39+00:00",
+    "invocation": {
+        "module_args": {
+            "allocation_id": null,
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "client_token": null,
+            "debug_botocore_endpoint_logs": false,
+            "ec2_url": null,
+            "eip_address": null,
+            "if_exist_do_not_create": true,
+            "nat_gateway_id": null,
+            "profile": null,
+            "region": "ap-south-1",
+            "release_eip": false,
+            "security_token": null,
+            "state": "present",
+            "subnet_id": "subnet-0e6eaab33cdc394d6",
+            "validate_certs": true,
+            "wait": true,
+            "wait_timeout": 320
+        }
+    },
+    "item": [
+        {
+            "natgatewayname": "SUB3-PRIV-VPCA-NATGW"
+        },
+        {
+            "ngregion": "ap-south-1",
+            "ngsubnet": "subnet-0e6eaab33cdc394d6"
+        }
+    ],
+    "msg": "NAT gateway nat-0f18b383f78d173dd created",
+    "nat_gateway_addresses": [
+        {
+            "allocation_id": "eipalloc-03b29b6f6e6d5ce6a",
+            "network_interface_id": "eni-04cd6c28aae7ab6fe",
+            "private_ip": "10.0.1.159",
+            "public_ip": "13.235.155.114"
+        }
+    ],
+    "nat_gateway_id": "nat-0f18b383f78d173dd",
+    "state": "available",
+    "subnet_id": "subnet-0e6eaab33cdc394d6",
+    "success": true,
+    "tags": [],
+    "vpc_id": "vpc-03f14f659c6c1c8b7"
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956282.5542204-40864655809871 `" && echo ansible-tmp-1562956282.5542204-40864655809871="` echo /root/.ansible/tmp/ansible-tmp-1562956282.5542204-40864655809871 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_vpc_nat_gateway.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-10345l_ry3v47/tmpuqv877yc TO /root/.ansible/tmp/ansible-tmp-1562956282.5542204-40864655809871/AnsiballZ_ec2_vpc_nat_gateway.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956282.5542204-40864655809871/ /root/.ansible/tmp/ansible-tmp-1562956282.5542204-40864655809871/AnsiballZ_ec2_vpc_nat_gateway.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956282.5542204-40864655809871/AnsiballZ_ec2_vpc_nat_gateway.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956282.5542204-40864655809871/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item=[{'natgatewayname': 'SUB4-PRIV-VPCB-NATGW'}, {'ngsubnet': 'subnet-01306dd19c6fd38a3', 'ngregion': 'ap-south-1'}]) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "create_time": "2019-07-12T18:31:23+00:00",
+    "invocation": {
+        "module_args": {
+            "allocation_id": null,
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "client_token": null,
+            "debug_botocore_endpoint_logs": false,
+            "ec2_url": null,
+            "eip_address": null,
+            "if_exist_do_not_create": true,
+            "nat_gateway_id": null,
+            "profile": null,
+            "region": "ap-south-1",
+            "release_eip": false,
+            "security_token": null,
+            "state": "present",
+            "subnet_id": "subnet-01306dd19c6fd38a3",
+            "validate_certs": true,
+            "wait": true,
+            "wait_timeout": 320
+        }
+    },
+    "item": [
+        {
+            "natgatewayname": "SUB4-PRIV-VPCB-NATGW"
+        },
+        {
+            "ngregion": "ap-south-1",
+            "ngsubnet": "subnet-01306dd19c6fd38a3"
+        }
+    ],
+    "msg": "NAT gateway nat-0fcb692b957ab4d75 created",
+    "nat_gateway_addresses": [
+        {
+            "allocation_id": "eipalloc-0643033338d9456b5",
+            "network_interface_id": "eni-0c9db801b5bf849e4",
+            "private_ip": "10.1.2.91",
+            "public_ip": "13.234.196.188"
+        }
+    ],
+    "nat_gateway_id": "nat-0fcb692b957ab4d75",
+    "state": "available",
+    "subnet_id": "subnet-01306dd19c6fd38a3",
+    "success": true,
+    "tags": [],
+    "vpc_id": "vpc-0195c1d6ee5610e98"
+}
+
+TASK [debug natgw] **********************************************************************************************************************
+task path: /etc/ansible/ap-south-1/4_auto-ngw.yaml:18
+ok: [localhost] => {
+    "msg": {
+        "changed": true,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "create_time": "2019-07-12T18:29:39+00:00",
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "allocation_id": null,
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "client_token": null,
+                        "debug_botocore_endpoint_logs": false,
+                        "ec2_url": null,
+                        "eip_address": null,
+                        "if_exist_do_not_create": true,
+                        "nat_gateway_id": null,
+                        "profile": null,
+                        "region": "ap-south-1",
+                        "release_eip": false,
+                        "security_token": null,
+                        "state": "present",
+                        "subnet_id": "subnet-0e6eaab33cdc394d6",
+                        "validate_certs": true,
+                        "wait": true,
+                        "wait_timeout": 320
+                    }
+                },
+                "item": [
+                    {
+                        "natgatewayname": "SUB3-PRIV-VPCA-NATGW"
+                    },
+                    {
+                        "ngregion": "ap-south-1",
+                        "ngsubnet": "subnet-0e6eaab33cdc394d6"
+                    }
+                ],
+                "msg": "NAT gateway nat-0f18b383f78d173dd created",
+                "nat_gateway_addresses": [
+                    {
+                        "allocation_id": "eipalloc-03b29b6f6e6d5ce6a",
+                        "network_interface_id": "eni-04cd6c28aae7ab6fe",
+                        "private_ip": "10.0.1.159",
+                        "public_ip": "13.235.155.114"
+                    }
+                ],
+                "nat_gateway_id": "nat-0f18b383f78d173dd",
+                "state": "available",
+                "subnet_id": "subnet-0e6eaab33cdc394d6",
+                "success": true,
+                "tags": [],
+                "vpc_id": "vpc-03f14f659c6c1c8b7"
+            },
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "create_time": "2019-07-12T18:31:23+00:00",
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "allocation_id": null,
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "client_token": null,
+                        "debug_botocore_endpoint_logs": false,
+                        "ec2_url": null,
+                        "eip_address": null,
+                        "if_exist_do_not_create": true,
+                        "nat_gateway_id": null,
+                        "profile": null,
+                        "region": "ap-south-1",
+                        "release_eip": false,
+                        "security_token": null,
+                        "state": "present",
+                        "subnet_id": "subnet-01306dd19c6fd38a3",
+                        "validate_certs": true,
+                        "wait": true,
+                        "wait_timeout": 320
+                    }
+                },
+                "item": [
+                    {
+                        "natgatewayname": "SUB4-PRIV-VPCB-NATGW"
+                    },
+                    {
+                        "ngregion": "ap-south-1",
+                        "ngsubnet": "subnet-01306dd19c6fd38a3"
+                    }
+                ],
+                "msg": "NAT gateway nat-0fcb692b957ab4d75 created",
+                "nat_gateway_addresses": [
+                    {
+                        "allocation_id": "eipalloc-0643033338d9456b5",
+                        "network_interface_id": "eni-0c9db801b5bf849e4",
+                        "private_ip": "10.1.2.91",
+                        "public_ip": "13.234.196.188"
+                    }
+                ],
+                "nat_gateway_id": "nat-0fcb692b957ab4d75",
+                "state": "available",
+                "subnet_id": "subnet-01306dd19c6fd38a3",
+                "success": true,
+                "tags": [],
+                "vpc_id": "vpc-0195c1d6ee5610e98"
+            }
+        ]
+    }
+}
+
+TASK [setfacts natworkgwid] *************************************************************************************************************
+task path: /etc/ansible/ap-south-1/4_auto-ngw.yaml:22
+ok: [localhost] => (item={'msg': 'NAT gateway nat-0f18b383f78d173dd created', 'success': True, 'changed': True, 'create_time': '2019-07-12T18:29:39+00:00', 'nat_gateway_addresses': [{'allocation_id': 'eipalloc-03b29b6f6e6d5ce6a', 'network_interface_id': 'eni-04cd6c28aae7ab6fe', 'private_ip': '10.0.1.159', 'public_ip': '13.235.155.114'}], 'nat_gateway_id': 'nat-0f18b383f78d173dd', 'state': 'available', 'subnet_id': 'subnet-0e6eaab33cdc394d6', 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'tags': [], 'invocation': {'module_args': {'subnet_id': 'subnet-0e6eaab33cdc394d6', 'region': 'ap-south-1', 'wait': True, 'if_exist_do_not_create': True, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'state': 'present', 'wait_timeout': 320, 'release_eip': False, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'eip_address': None, 'allocation_id': None, 'nat_gateway_id': None, 'client_token': None}}, 'failed': False, 'item': [{'natgatewayname': 'SUB3-PRIV-VPCA-NATGW'}, {'ngsubnet': 'subnet-0e6eaab33cdc394d6', 'ngregion': 'ap-south-1'}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "natgw_id": {
+            "SUB3-PRIV-VPCA-NATGW": "nat-0f18b383f78d173dd"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": true,
+        "create_time": "2019-07-12T18:29:39+00:00",
+        "failed": false,
+        "invocation": {
+            "module_args": {
+                "allocation_id": null,
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "client_token": null,
+                "debug_botocore_endpoint_logs": false,
+                "ec2_url": null,
+                "eip_address": null,
+                "if_exist_do_not_create": true,
+                "nat_gateway_id": null,
+                "profile": null,
+                "region": "ap-south-1",
+                "release_eip": false,
+                "security_token": null,
+                "state": "present",
+                "subnet_id": "subnet-0e6eaab33cdc394d6",
+                "validate_certs": true,
+                "wait": true,
+                "wait_timeout": 320
+            }
+        },
+        "item": [
+            {
+                "natgatewayname": "SUB3-PRIV-VPCA-NATGW"
+            },
+            {
+                "ngregion": "ap-south-1",
+                "ngsubnet": "subnet-0e6eaab33cdc394d6"
+            }
+        ],
+        "msg": "NAT gateway nat-0f18b383f78d173dd created",
+        "nat_gateway_addresses": [
+            {
+                "allocation_id": "eipalloc-03b29b6f6e6d5ce6a",
+                "network_interface_id": "eni-04cd6c28aae7ab6fe",
+                "private_ip": "10.0.1.159",
+                "public_ip": "13.235.155.114"
+            }
+        ],
+        "nat_gateway_id": "nat-0f18b383f78d173dd",
+        "state": "available",
+        "subnet_id": "subnet-0e6eaab33cdc394d6",
+        "success": true,
+        "tags": [],
+        "vpc_id": "vpc-03f14f659c6c1c8b7"
+    }
+}
+ok: [localhost] => (item={'msg': 'NAT gateway nat-0fcb692b957ab4d75 created', 'success': True, 'changed': True, 'create_time': '2019-07-12T18:31:23+00:00', 'nat_gateway_addresses': [{'allocation_id': 'eipalloc-0643033338d9456b5', 'network_interface_id': 'eni-0c9db801b5bf849e4', 'private_ip': '10.1.2.91', 'public_ip': '13.234.196.188'}], 'nat_gateway_id': 'nat-0fcb692b957ab4d75', 'state': 'available', 'subnet_id': 'subnet-01306dd19c6fd38a3', 'vpc_id': 'vpc-0195c1d6ee5610e98', 'tags': [], 'invocation': {'module_args': {'subnet_id': 'subnet-01306dd19c6fd38a3', 'region': 'ap-south-1', 'wait': True, 'if_exist_do_not_create': True, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'state': 'present', 'wait_timeout': 320, 'release_eip': False, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'eip_address': None, 'allocation_id': None, 'nat_gateway_id': None, 'client_token': None}}, 'failed': False, 'item': [{'natgatewayname': 'SUB4-PRIV-VPCB-NATGW'}, {'ngsubnet': 'subnet-01306dd19c6fd38a3', 'ngregion': 'ap-south-1'}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "natgw_id": {
+            "SUB3-PRIV-VPCA-NATGW": "nat-0f18b383f78d173dd",
+            "SUB4-PRIV-VPCB-NATGW": "nat-0fcb692b957ab4d75"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": true,
+        "create_time": "2019-07-12T18:31:23+00:00",
+        "failed": false,
+        "invocation": {
+            "module_args": {
+                "allocation_id": null,
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "client_token": null,
+                "debug_botocore_endpoint_logs": false,
+                "ec2_url": null,
+                "eip_address": null,
+                "if_exist_do_not_create": true,
+                "nat_gateway_id": null,
+                "profile": null,
+                "region": "ap-south-1",
+                "release_eip": false,
+                "security_token": null,
+                "state": "present",
+                "subnet_id": "subnet-01306dd19c6fd38a3",
+                "validate_certs": true,
+                "wait": true,
+                "wait_timeout": 320
+            }
+        },
+        "item": [
+            {
+                "natgatewayname": "SUB4-PRIV-VPCB-NATGW"
+            },
+            {
+                "ngregion": "ap-south-1",
+                "ngsubnet": "subnet-01306dd19c6fd38a3"
+            }
+        ],
+        "msg": "NAT gateway nat-0fcb692b957ab4d75 created",
+        "nat_gateway_addresses": [
+            {
+                "allocation_id": "eipalloc-0643033338d9456b5",
+                "network_interface_id": "eni-0c9db801b5bf849e4",
+                "private_ip": "10.1.2.91",
+                "public_ip": "13.234.196.188"
+            }
+        ],
+        "nat_gateway_id": "nat-0fcb692b957ab4d75",
+        "state": "available",
+        "subnet_id": "subnet-01306dd19c6fd38a3",
+        "success": true,
+        "tags": [],
+        "vpc_id": "vpc-0195c1d6ee5610e98"
+    }
+}
+
+TASK [replace NGW name with NGW id] *****************************************************************************************************
+task path: /etc/ansible/ap-south-1/4_auto-ngw.yaml:29
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956378.195139-44625624717255 `" && echo ansible-tmp-1562956378.195139-44625624717255="` echo /root/.ansible/tmp/ansible-tmp-1562956378.195139-44625624717255 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-10345l_ry3v47/tmp9p8lhal4 TO /root/.ansible/tmp/ansible-tmp-1562956378.195139-44625624717255/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956378.195139-44625624717255/ /root/.ansible/tmp/ansible-tmp-1562956378.195139-44625624717255/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956378.195139-44625624717255/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956378.195139-44625624717255/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item={'key': 'SUB3-PRIV-VPCA-NATGW', 'value': 'nat-0f18b383f78d173dd'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all3.yaml",
+            "regexp": "SUB3-PRIV-VPCA-NATGW",
+            "remote_src": null,
+            "replace": "nat-0f18b383f78d173dd",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "SUB3-PRIV-VPCA-NATGW",
+        "value": "nat-0f18b383f78d173dd"
+    },
+    "msg": "2 replacements made"
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956378.593941-207847890264959 `" && echo ansible-tmp-1562956378.593941-207847890264959="` echo /root/.ansible/tmp/ansible-tmp-1562956378.593941-207847890264959 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-10345l_ry3v47/tmpbxbposul TO /root/.ansible/tmp/ansible-tmp-1562956378.593941-207847890264959/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956378.593941-207847890264959/ /root/.ansible/tmp/ansible-tmp-1562956378.593941-207847890264959/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956378.593941-207847890264959/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956378.593941-207847890264959/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item={'key': 'SUB4-PRIV-VPCB-NATGW', 'value': 'nat-0fcb692b957ab4d75'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all3.yaml",
+            "regexp": "SUB4-PRIV-VPCB-NATGW",
+            "remote_src": null,
+            "replace": "nat-0fcb692b957ab4d75",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "SUB4-PRIV-VPCB-NATGW",
+        "value": "nat-0fcb692b957ab4d75"
+    },
+    "msg": "2 replacements made"
+}
+
+TASK [get mainroutes id to given vpcid] *************************************************************************************************
+task path: /etc/ansible/ap-south-1/4_auto-ngw.yaml:37
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956378.8468122-69328850661488 `" && echo ansible-tmp-1562956378.8468122-69328850661488="` echo /root/.ansible/tmp/ansible-tmp-1562956378.8468122-69328850661488 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_vpc_route_table_facts.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-10345l_ry3v47/tmpgtehgo6m TO /root/.ansible/tmp/ansible-tmp-1562956378.8468122-69328850661488/AnsiballZ_ec2_vpc_route_table_facts.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956378.8468122-69328850661488/ /root/.ansible/tmp/ansible-tmp-1562956378.8468122-69328850661488/AnsiballZ_ec2_vpc_route_table_facts.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956378.8468122-69328850661488/AnsiballZ_ec2_vpc_route_table_facts.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956378.8468122-69328850661488/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+ok: [localhost] => (item=[{'routename': 'SUB3-PRI-VPC--A-NATROUTE'}, {'ngrvpc': 'vpc-03f14f659c6c1c8b7', 'ngrvpccidr': '10.0.0.0/16', 'ngrregion': 'ap-south-1', 'ngrsubnet': 'subnet-0f4ad444fd5ce1395', 'ngrgatewayid': 'SUB3-PRIV-VPCA-NATGW', 'ngrrouteid': 'SUB3-PRI-VPC--A-NATROUTE'}]) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "debug_botocore_endpoint_logs": false,
+            "ec2_url": null,
+            "filters": {
+                "association.main": "true",
+                "vpc-id": "vpc-03f14f659c6c1c8b7"
+            },
+            "profile": null,
+            "region": "ap-south-1",
+            "security_token": null,
+            "validate_certs": true
+        }
+    },
+    "item": [
+        {
+            "routename": "SUB3-PRI-VPC--A-NATROUTE"
+        },
+        {
+            "ngrgatewayid": "SUB3-PRIV-VPCA-NATGW",
+            "ngrregion": "ap-south-1",
+            "ngrrouteid": "SUB3-PRI-VPC--A-NATROUTE",
+            "ngrsubnet": "subnet-0f4ad444fd5ce1395",
+            "ngrvpc": "vpc-03f14f659c6c1c8b7",
+            "ngrvpccidr": "10.0.0.0/16"
+        }
+    ],
+    "route_tables": [
+        {
+            "associations": [
+                {
+                    "id": "rtbassoc-00fa07c058b5a3b20",
+                    "main": true,
+                    "route_table_id": "rtb-02da1abaac5feb384",
+                    "subnet_id": null
+                }
+            ],
+            "id": "rtb-02da1abaac5feb384",
+            "routes": [
+                {
+                    "destination_cidr_block": "10.0.0.0/16",
+                    "gateway_id": "local",
+                    "instance_id": null,
+                    "interface_id": null,
+                    "origin": "CreateRouteTable",
+                    "state": "active",
+                    "vpc_peering_connection_id": null
+                }
+            ],
+            "tags": {},
+            "vpc_id": "vpc-03f14f659c6c1c8b7"
+        }
+    ]
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956379.6527054-275231208591006 `" && echo ansible-tmp-1562956379.6527054-275231208591006="` echo /root/.ansible/tmp/ansible-tmp-1562956379.6527054-275231208591006 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_vpc_route_table_facts.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-10345l_ry3v47/tmp9h5a3wof TO /root/.ansible/tmp/ansible-tmp-1562956379.6527054-275231208591006/AnsiballZ_ec2_vpc_route_table_facts.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956379.6527054-275231208591006/ /root/.ansible/tmp/ansible-tmp-1562956379.6527054-275231208591006/AnsiballZ_ec2_vpc_route_table_facts.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956379.6527054-275231208591006/AnsiballZ_ec2_vpc_route_table_facts.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956379.6527054-275231208591006/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost] => (item=[{'routename': 'SUB4-PRI-VPC--B-NATROUTE'}, {'ngrvpc': 'vpc-0195c1d6ee5610e98', 'ngrvpccidr': '10.1.0.0/16', 'ngrregion': 'ap-south-1', 'ngrsubnet': 'subnet-0b31ab7d107a97433', 'ngrgatewayid': 'SUB4-PRIV-VPCB-NATGW', 'ngrrouteid': 'SUB4-PRI-VPC--B-NATROUTE'}]) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "debug_botocore_endpoint_logs": false,
+            "ec2_url": null,
+            "filters": {
+                "association.main": "true",
+                "vpc-id": "vpc-0195c1d6ee5610e98"
+            },
+            "profile": null,
+            "region": "ap-south-1",
+            "security_token": null,
+            "validate_certs": true
+        }
+    },
+    "item": [
+        {
+            "routename": "SUB4-PRI-VPC--B-NATROUTE"
+        },
+        {
+            "ngrgatewayid": "SUB4-PRIV-VPCB-NATGW",
+            "ngrregion": "ap-south-1",
+            "ngrrouteid": "SUB4-PRI-VPC--B-NATROUTE",
+            "ngrsubnet": "subnet-0b31ab7d107a97433",
+            "ngrvpc": "vpc-0195c1d6ee5610e98",
+            "ngrvpccidr": "10.1.0.0/16"
+        }
+    ],
+    "route_tables": [
+        {
+            "associations": [
+                {
+                    "id": "rtbassoc-04e7422abcafdcb1e",
+                    "main": true,
+                    "route_table_id": "rtb-0bdef42582a46c252",
+                    "subnet_id": null
+                }
+            ],
+            "id": "rtb-0bdef42582a46c252",
+            "routes": [
+                {
+                    "destination_cidr_block": "10.1.0.0/16",
+                    "gateway_id": "local",
+                    "instance_id": null,
+                    "interface_id": null,
+                    "origin": "CreateRouteTable",
+                    "state": "active",
+                    "vpc_peering_connection_id": null
+                }
+            ],
+            "tags": {},
+            "vpc_id": "vpc-0195c1d6ee5610e98"
+        }
+    ]
+}
+
+TASK [debug main_route] *****************************************************************************************************************
+task path: /etc/ansible/ap-south-1/4_auto-ngw.yaml:48
+ok: [localhost] => {
+    "msg": {
+        "changed": false,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "debug_botocore_endpoint_logs": false,
+                        "ec2_url": null,
+                        "filters": {
+                            "association.main": "true",
+                            "vpc-id": "vpc-03f14f659c6c1c8b7"
+                        },
+                        "profile": null,
+                        "region": "ap-south-1",
+                        "security_token": null,
+                        "validate_certs": true
+                    }
+                },
+                "item": [
+                    {
+                        "routename": "SUB3-PRI-VPC--A-NATROUTE"
+                    },
+                    {
+                        "ngrgatewayid": "SUB3-PRIV-VPCA-NATGW",
+                        "ngrregion": "ap-south-1",
+                        "ngrrouteid": "SUB3-PRI-VPC--A-NATROUTE",
+                        "ngrsubnet": "subnet-0f4ad444fd5ce1395",
+                        "ngrvpc": "vpc-03f14f659c6c1c8b7",
+                        "ngrvpccidr": "10.0.0.0/16"
+                    }
+                ],
+                "route_tables": [
+                    {
+                        "associations": [
+                            {
+                                "id": "rtbassoc-00fa07c058b5a3b20",
+                                "main": true,
+                                "route_table_id": "rtb-02da1abaac5feb384",
+                                "subnet_id": null
+                            }
+                        ],
+                        "id": "rtb-02da1abaac5feb384",
+                        "routes": [
+                            {
+                                "destination_cidr_block": "10.0.0.0/16",
+                                "gateway_id": "local",
+                                "instance_id": null,
+                                "interface_id": null,
+                                "origin": "CreateRouteTable",
+                                "state": "active",
+                                "vpc_peering_connection_id": null
+                            }
+                        ],
+                        "tags": {},
+                        "vpc_id": "vpc-03f14f659c6c1c8b7"
+                    }
+                ]
+            },
+            {
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "debug_botocore_endpoint_logs": false,
+                        "ec2_url": null,
+                        "filters": {
+                            "association.main": "true",
+                            "vpc-id": "vpc-0195c1d6ee5610e98"
+                        },
+                        "profile": null,
+                        "region": "ap-south-1",
+                        "security_token": null,
+                        "validate_certs": true
+                    }
+                },
+                "item": [
+                    {
+                        "routename": "SUB4-PRI-VPC--B-NATROUTE"
+                    },
+                    {
+                        "ngrgatewayid": "SUB4-PRIV-VPCB-NATGW",
+                        "ngrregion": "ap-south-1",
+                        "ngrrouteid": "SUB4-PRI-VPC--B-NATROUTE",
+                        "ngrsubnet": "subnet-0b31ab7d107a97433",
+                        "ngrvpc": "vpc-0195c1d6ee5610e98",
+                        "ngrvpccidr": "10.1.0.0/16"
+                    }
+                ],
+                "route_tables": [
+                    {
+                        "associations": [
+                            {
+                                "id": "rtbassoc-04e7422abcafdcb1e",
+                                "main": true,
+                                "route_table_id": "rtb-0bdef42582a46c252",
+                                "subnet_id": null
+                            }
+                        ],
+                        "id": "rtb-0bdef42582a46c252",
+                        "routes": [
+                            {
+                                "destination_cidr_block": "10.1.0.0/16",
+                                "gateway_id": "local",
+                                "instance_id": null,
+                                "interface_id": null,
+                                "origin": "CreateRouteTable",
+                                "state": "active",
+                                "vpc_peering_connection_id": null
+                            }
+                        ],
+                        "tags": {},
+                        "vpc_id": "vpc-0195c1d6ee5610e98"
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+TASK [setfacts to main_route] ***********************************************************************************************************
+task path: /etc/ansible/ap-south-1/4_auto-ngw.yaml:52
+ok: [localhost] => (item={'route_tables': [{'id': 'rtb-02da1abaac5feb384', 'routes': [{'destination_cidr_block': '10.0.0.0/16', 'gateway_id': 'local', 'instance_id': None, 'interface_id': None, 'vpc_peering_connection_id': None, 'state': 'active', 'origin': 'CreateRouteTable'}], 'associations': [{'id': 'rtbassoc-00fa07c058b5a3b20', 'route_table_id': 'rtb-02da1abaac5feb384', 'subnet_id': None, 'main': True}], 'tags': {}, 'vpc_id': 'vpc-03f14f659c6c1c8b7'}], 'invocation': {'module_args': {'region': 'ap-south-1', 'filters': {'vpc-id': 'vpc-03f14f659c6c1c8b7', 'association.main': 'true'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'changed': False, 'item': [{'routename': 'SUB3-PRI-VPC--A-NATROUTE'}, {'ngrvpc': 'vpc-03f14f659c6c1c8b7', 'ngrvpccidr': '10.0.0.0/16', 'ngrregion': 'ap-south-1', 'ngrsubnet': 'subnet-0f4ad444fd5ce1395', 'ngrgatewayid': 'SUB3-PRIV-VPCA-NATGW', 'ngrrouteid': 'SUB3-PRI-VPC--A-NATROUTE'}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "mainroute_vpcs": {
+            "SUB3-PRI-VPC--A-NATROUTE": "rtb-02da1abaac5feb384"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "invocation": {
+            "module_args": {
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "debug_botocore_endpoint_logs": false,
+                "ec2_url": null,
+                "filters": {
+                    "association.main": "true",
+                    "vpc-id": "vpc-03f14f659c6c1c8b7"
+                },
+                "profile": null,
+                "region": "ap-south-1",
+                "security_token": null,
+                "validate_certs": true
+            }
+        },
+        "item": [
+            {
+                "routename": "SUB3-PRI-VPC--A-NATROUTE"
+            },
+            {
+                "ngrgatewayid": "SUB3-PRIV-VPCA-NATGW",
+                "ngrregion": "ap-south-1",
+                "ngrrouteid": "SUB3-PRI-VPC--A-NATROUTE",
+                "ngrsubnet": "subnet-0f4ad444fd5ce1395",
+                "ngrvpc": "vpc-03f14f659c6c1c8b7",
+                "ngrvpccidr": "10.0.0.0/16"
+            }
+        ],
+        "route_tables": [
+            {
+                "associations": [
+                    {
+                        "id": "rtbassoc-00fa07c058b5a3b20",
+                        "main": true,
+                        "route_table_id": "rtb-02da1abaac5feb384",
+                        "subnet_id": null
+                    }
+                ],
+                "id": "rtb-02da1abaac5feb384",
+                "routes": [
+                    {
+                        "destination_cidr_block": "10.0.0.0/16",
+                        "gateway_id": "local",
+                        "instance_id": null,
+                        "interface_id": null,
+                        "origin": "CreateRouteTable",
+                        "state": "active",
+                        "vpc_peering_connection_id": null
+                    }
+                ],
+                "tags": {},
+                "vpc_id": "vpc-03f14f659c6c1c8b7"
+            }
+        ]
+    }
+}
+ok: [localhost] => (item={'route_tables': [{'id': 'rtb-0bdef42582a46c252', 'routes': [{'destination_cidr_block': '10.1.0.0/16', 'gateway_id': 'local', 'instance_id': None, 'interface_id': None, 'vpc_peering_connection_id': None, 'state': 'active', 'origin': 'CreateRouteTable'}], 'associations': [{'id': 'rtbassoc-04e7422abcafdcb1e', 'route_table_id': 'rtb-0bdef42582a46c252', 'subnet_id': None, 'main': True}], 'tags': {}, 'vpc_id': 'vpc-0195c1d6ee5610e98'}], 'invocation': {'module_args': {'region': 'ap-south-1', 'filters': {'vpc-id': 'vpc-0195c1d6ee5610e98', 'association.main': 'true'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'changed': False, 'item': [{'routename': 'SUB4-PRI-VPC--B-NATROUTE'}, {'ngrvpc': 'vpc-0195c1d6ee5610e98', 'ngrvpccidr': '10.1.0.0/16', 'ngrregion': 'ap-south-1', 'ngrsubnet': 'subnet-0b31ab7d107a97433', 'ngrgatewayid': 'SUB4-PRIV-VPCB-NATGW', 'ngrrouteid': 'SUB4-PRI-VPC--B-NATROUTE'}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "mainroute_vpcs": {
+            "SUB3-PRI-VPC--A-NATROUTE": "rtb-02da1abaac5feb384",
+            "SUB4-PRI-VPC--B-NATROUTE": "rtb-0bdef42582a46c252"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "invocation": {
+            "module_args": {
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "debug_botocore_endpoint_logs": false,
+                "ec2_url": null,
+                "filters": {
+                    "association.main": "true",
+                    "vpc-id": "vpc-0195c1d6ee5610e98"
+                },
+                "profile": null,
+                "region": "ap-south-1",
+                "security_token": null,
+                "validate_certs": true
+            }
+        },
+        "item": [
+            {
+                "routename": "SUB4-PRI-VPC--B-NATROUTE"
+            },
+            {
+                "ngrgatewayid": "SUB4-PRIV-VPCB-NATGW",
+                "ngrregion": "ap-south-1",
+                "ngrrouteid": "SUB4-PRI-VPC--B-NATROUTE",
+                "ngrsubnet": "subnet-0b31ab7d107a97433",
+                "ngrvpc": "vpc-0195c1d6ee5610e98",
+                "ngrvpccidr": "10.1.0.0/16"
+            }
+        ],
+        "route_tables": [
+            {
+                "associations": [
+                    {
+                        "id": "rtbassoc-04e7422abcafdcb1e",
+                        "main": true,
+                        "route_table_id": "rtb-0bdef42582a46c252",
+                        "subnet_id": null
+                    }
+                ],
+                "id": "rtb-0bdef42582a46c252",
+                "routes": [
+                    {
+                        "destination_cidr_block": "10.1.0.0/16",
+                        "gateway_id": "local",
+                        "instance_id": null,
+                        "interface_id": null,
+                        "origin": "CreateRouteTable",
+                        "state": "active",
+                        "vpc_peering_connection_id": null
+                    }
+                ],
+                "tags": {},
+                "vpc_id": "vpc-0195c1d6ee5610e98"
+            }
+        ]
+    }
+}
+
+TASK [copy all3 to all4] ****************************************************************************************************************
+task path: /etc/ansible/ap-south-1/4_auto-ngw.yaml:58
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262 `" && echo ansible-tmp-1562956380.4008868-220135935920262="` echo /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/stat.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-10345l_ry3v47/tmp1182a0z3 TO /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/AnsiballZ_stat.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/ /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/AnsiballZ_stat.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/AnsiballZ_stat.py && sleep 0'
+<127.0.0.1> PUT /etc/ansible/ap-south-1/group_vars/all3.yaml TO /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/source
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/ /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/source && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/copy.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-10345l_ry3v47/tmpitr5k39q TO /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/AnsiballZ_copy.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/ /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/AnsiballZ_copy.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/AnsiballZ_copy.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => {
+    "changed": true,
+    "checksum": "42b330247b813e67a7708e58dd2e2da0ab10c876",
+    "dest": "/etc/ansible/ap-south-1/group_vars/all4.yaml",
+    "diff": [],
+    "gid": 0,
+    "group": "root",
+    "invocation": {
+        "module_args": {
+            "_original_basename": "all3.yaml",
+            "attributes": null,
+            "backup": false,
+            "checksum": "42b330247b813e67a7708e58dd2e2da0ab10c876",
+            "content": null,
+            "delimiter": null,
+            "dest": "/etc/ansible/ap-south-1/group_vars/all4.yaml",
+            "directory_mode": null,
+            "follow": false,
+            "force": true,
+            "group": null,
+            "local_follow": null,
+            "mode": null,
+            "owner": null,
+            "regexp": null,
+            "remote_src": null,
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": "/root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/source",
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "md5sum": "33371347840104ef01e98bd80ac24bc0",
+    "mode": "0644",
+    "owner": "root",
+    "secontext": "system_u:object_r:etc_t:s0",
+    "size": 7148,
+    "src": "/root/.ansible/tmp/ansible-tmp-1562956380.4008868-220135935920262/source",
+    "state": "file",
+    "uid": 0
+}
+
+TASK [replace natgateway names with nat gateway ids with VPC-ids] ***********************************************************************
+task path: /etc/ansible/ap-south-1/4_auto-ngw.yaml:64
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956381.2037075-21879277866758 `" && echo ansible-tmp-1562956381.2037075-21879277866758="` echo /root/.ansible/tmp/ansible-tmp-1562956381.2037075-21879277866758 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-10345l_ry3v47/tmpy0k8u4y7 TO /root/.ansible/tmp/ansible-tmp-1562956381.2037075-21879277866758/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956381.2037075-21879277866758/ /root/.ansible/tmp/ansible-tmp-1562956381.2037075-21879277866758/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956381.2037075-21879277866758/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956381.2037075-21879277866758/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item={'key': 'SUB3-PRI-VPC--A-NATROUTE', 'value': 'rtb-02da1abaac5feb384'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all4.yaml",
+            "regexp": "SUB3-PRI-VPC--A-NATROUTE",
+            "remote_src": null,
+            "replace": "rtb-02da1abaac5feb384",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "SUB3-PRI-VPC--A-NATROUTE",
+        "value": "rtb-02da1abaac5feb384"
+    },
+    "msg": "2 replacements made"
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562956381.4259212-90968523011554 `" && echo ansible-tmp-1562956381.4259212-90968523011554="` echo /root/.ansible/tmp/ansible-tmp-1562956381.4259212-90968523011554 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-10345l_ry3v47/tmpcegt8n7s TO /root/.ansible/tmp/ansible-tmp-1562956381.4259212-90968523011554/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562956381.4259212-90968523011554/ /root/.ansible/tmp/ansible-tmp-1562956381.4259212-90968523011554/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562956381.4259212-90968523011554/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562956381.4259212-90968523011554/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item={'key': 'SUB4-PRI-VPC--B-NATROUTE', 'value': 'rtb-0bdef42582a46c252'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all4.yaml",
+            "regexp": "SUB4-PRI-VPC--B-NATROUTE",
+            "remote_src": null,
+            "replace": "rtb-0bdef42582a46c252",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "SUB4-PRI-VPC--B-NATROUTE",
+        "value": "rtb-0bdef42582a46c252"
+    },
+    "msg": "2 replacements made"
+}
+META: ran handlers
+META: ran handlers
+
+PLAY RECAP ******************************************************************************************************************************
+localhost                  : ok=10   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

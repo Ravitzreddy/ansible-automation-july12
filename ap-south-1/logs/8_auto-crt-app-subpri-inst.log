@@ -1,0 +1,690 @@
+ansible-playbook 2.8.2
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python3.6/site-packages/ansible
+  executable location = /usr/local/bin/ansible-playbook
+  python version = 3.6.8 (default, Apr  3 2019, 17:26:03) [GCC 8.2.1 20180905 (Red Hat 8.2.1-3)]
+Using /etc/ansible/ansible.cfg as config file
+setting up inventory plugins
+host_list declined parsing /etc/ansible/ec2.py as it did not pass it's verify_file() method
+Not replacing invalid character(s) "{'-'}" in group name (ap-south-1)
+Not replacing invalid character(s) "{'-'}" in group name (ap-south-1a)
+Not replacing invalid character(s) "{'-'}" in group name (ap-south-1b)
+Not replacing invalid character(s) "{'-'}" in group name (i-00ac71ad1008d63fb)
+Not replacing invalid character(s) "{'-'}" in group name (i-0b9e74a4ad87c2e84)
+Not replacing invalid character(s) "{'-'}" in group name (i-0eeac79ac21f81c6b)
+Parsed /etc/ansible/ec2.py inventory source with script plugin
+Loading callback plugin default of type stdout, v2.0 from /usr/local/lib/python3.6/site-packages/ansible/plugins/callback/default.py
+
+PLAYBOOK: 8_auto-crt-app-subpri-inst.yaml ***********************************************************************************************
+Positional arguments: /etc/ansible/ap-south-1/8_auto-crt-app-subpri-inst.yaml
+verbosity: 4
+private_key_file: /home/ec2-user/mykeypair
+connection: smart
+timeout: 10
+become_method: sudo
+tags: ('all',)
+inventory: ('/etc/ansible/ec2.py',)
+extra_vars: ('@/etc/ansible/ap-south-1/group_vars/all6.yaml',)
+forks: 5
+1 plays in /etc/ansible/ap-south-1/8_auto-crt-app-subpri-inst.yaml
+
+PLAY [localhost] ************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************
+task path: /etc/ansible/ap-south-1/8_auto-crt-app-subpri-inst.yaml:2
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562962375.4265285-65918900937405 `" && echo ansible-tmp-1562962375.4265285-65918900937405="` echo /root/.ansible/tmp/ansible-tmp-1562962375.4265285-65918900937405 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/system/setup.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-6367fgf0qtdq/tmpm8y6uxd3 TO /root/.ansible/tmp/ansible-tmp-1562962375.4265285-65918900937405/AnsiballZ_setup.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962375.4265285-65918900937405/ /root/.ansible/tmp/ansible-tmp-1562962375.4265285-65918900937405/AnsiballZ_setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562962375.4265285-65918900937405/AnsiballZ_setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562962375.4265285-65918900937405/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost]
+META: ran handlers
+
+TASK [create instances for app servers] *************************************************************************************************
+task path: /etc/ansible/ap-south-1/8_auto-crt-app-subpri-inst.yaml:6
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562962376.415722-231201685115453 `" && echo ansible-tmp-1562962376.415722-231201685115453="` echo /root/.ansible/tmp/ansible-tmp-1562962376.415722-231201685115453 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-6367fgf0qtdq/tmpfi6tk_mp TO /root/.ansible/tmp/ansible-tmp-1562962376.415722-231201685115453/AnsiballZ_ec2.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962376.415722-231201685115453/ /root/.ansible/tmp/ansible-tmp-1562962376.415722-231201685115453/AnsiballZ_ec2.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562962376.415722-231201685115453/AnsiballZ_ec2.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562962376.415722-231201685115453/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item=[{'instname': 'INST3-SUBPRI2-VPCA'}, {'inskeyname': 'myprimeadmkeypair', 'instype': 't2.micro', 'insimage': 'ami-0a74bfeb190bd404f', 'insregion': 'ap-south-1', 'inssecgrp': 'sg-04f285120f20abc22', 'instags': 'INSTANCESUBPRI2VPCA-INST2-SUBPRI2-VPCA', 'inspubiptag': 'INST3SUBPRI2VPCAPUBLICIP', 'inspriiptag': 'INST3SUBPRI2VPCAPRIVATEIP', 'inscount': 1, 'insvpcsubnetid': 'subnet-014ca81e19f6283d1', 'insasspubip': False}]) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "instance_ids": [
+        "i-0796d708cc84a1280"
+    ],
+    "instances": [
+        {
+            "ami_launch_index": "0",
+            "architecture": "x86_64",
+            "block_device_mapping": {
+                "/dev/sda1": {
+                    "delete_on_termination": true,
+                    "status": "attached",
+                    "volume_id": "vol-02ed3631337772049"
+                }
+            },
+            "dns_name": "",
+            "ebs_optimized": false,
+            "groups": {
+                "sg-04f285120f20abc22": "appinst-vpca"
+            },
+            "hypervisor": "xen",
+            "id": "i-0796d708cc84a1280",
+            "image_id": "ami-0a74bfeb190bd404f",
+            "instance_type": "t2.micro",
+            "kernel": null,
+            "key_name": "myprimeadmkeypair",
+            "launch_time": "2019-07-12T20:12:57.000Z",
+            "placement": "ap-south-1a",
+            "private_dns_name": "ip-10-0-2-144.ap-south-1.compute.internal",
+            "private_ip": "10.0.2.144",
+            "public_dns_name": "",
+            "public_ip": null,
+            "ramdisk": null,
+            "region": "ap-south-1",
+            "root_device_name": "/dev/sda1",
+            "root_device_type": "ebs",
+            "state": "running",
+            "state_code": 16,
+            "tags": {
+                "Name": "INST3-SUBPRI2-VPCA",
+                "Privateip": "INST3SUBPRI2VPCAPRIVATEIP",
+                "Publicip": "INST3SUBPRI2VPCAPUBLICIP"
+            },
+            "tenancy": "default",
+            "virtualization_type": "hvm"
+        }
+    ],
+    "invocation": {
+        "module_args": {
+            "assign_public_ip": null,
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "count": 1,
+            "count_tag": {
+                "application": "appservers"
+            },
+            "debug_botocore_endpoint_logs": false,
+            "ebs_optimized": false,
+            "ec2_url": null,
+            "exact_count": null,
+            "group": null,
+            "group_id": [
+                "sg-04f285120f20abc22"
+            ],
+            "id": null,
+            "image": "ami-0a74bfeb190bd404f",
+            "instance_ids": null,
+            "instance_initiated_shutdown_behavior": "stop",
+            "instance_profile_name": null,
+            "instance_tags": {
+                "Name": "INST3-SUBPRI2-VPCA",
+                "Privateip": "INST3SUBPRI2VPCAPRIVATEIP",
+                "Publicip": "INST3SUBPRI2VPCAPUBLICIP"
+            },
+            "instance_type": "t2.micro",
+            "kernel": null,
+            "key_name": "myprimeadmkeypair",
+            "monitoring": false,
+            "network_interfaces": null,
+            "placement_group": null,
+            "private_ip": null,
+            "profile": null,
+            "ramdisk": null,
+            "region": "ap-south-1",
+            "security_token": null,
+            "source_dest_check": null,
+            "spot_launch_group": null,
+            "spot_price": null,
+            "spot_type": "one-time",
+            "spot_wait_timeout": 600,
+            "state": "present",
+            "tenancy": "default",
+            "termination_protection": null,
+            "user_data": null,
+            "validate_certs": true,
+            "volumes": null,
+            "vpc_subnet_id": "subnet-014ca81e19f6283d1",
+            "wait": true,
+            "wait_timeout": 300,
+            "zone": null
+        }
+    },
+    "item": [
+        {
+            "instname": "INST3-SUBPRI2-VPCA"
+        },
+        {
+            "insasspubip": false,
+            "inscount": 1,
+            "insimage": "ami-0a74bfeb190bd404f",
+            "inskeyname": "myprimeadmkeypair",
+            "inspriiptag": "INST3SUBPRI2VPCAPRIVATEIP",
+            "inspubiptag": "INST3SUBPRI2VPCAPUBLICIP",
+            "insregion": "ap-south-1",
+            "inssecgrp": "sg-04f285120f20abc22",
+            "instags": "INSTANCESUBPRI2VPCA-INST2-SUBPRI2-VPCA",
+            "instype": "t2.micro",
+            "insvpcsubnetid": "subnet-014ca81e19f6283d1"
+        }
+    ],
+    "tagged_instances": []
+}
+
+TASK [debug] ****************************************************************************************************************************
+task path: /etc/ansible/ap-south-1/8_auto-crt-app-subpri-inst.yaml:28
+ok: [localhost] => {
+    "msg": {
+        "changed": true,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "failed": false,
+                "instance_ids": [
+                    "i-0796d708cc84a1280"
+                ],
+                "instances": [
+                    {
+                        "ami_launch_index": "0",
+                        "architecture": "x86_64",
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true,
+                                "status": "attached",
+                                "volume_id": "vol-02ed3631337772049"
+                            }
+                        },
+                        "dns_name": "",
+                        "ebs_optimized": false,
+                        "groups": {
+                            "sg-04f285120f20abc22": "appinst-vpca"
+                        },
+                        "hypervisor": "xen",
+                        "id": "i-0796d708cc84a1280",
+                        "image_id": "ami-0a74bfeb190bd404f",
+                        "instance_type": "t2.micro",
+                        "kernel": null,
+                        "key_name": "myprimeadmkeypair",
+                        "launch_time": "2019-07-12T20:12:57.000Z",
+                        "placement": "ap-south-1a",
+                        "private_dns_name": "ip-10-0-2-144.ap-south-1.compute.internal",
+                        "private_ip": "10.0.2.144",
+                        "public_dns_name": "",
+                        "public_ip": null,
+                        "ramdisk": null,
+                        "region": "ap-south-1",
+                        "root_device_name": "/dev/sda1",
+                        "root_device_type": "ebs",
+                        "state": "running",
+                        "state_code": 16,
+                        "tags": {
+                            "Name": "INST3-SUBPRI2-VPCA",
+                            "Privateip": "INST3SUBPRI2VPCAPRIVATEIP",
+                            "Publicip": "INST3SUBPRI2VPCAPUBLICIP"
+                        },
+                        "tenancy": "default",
+                        "virtualization_type": "hvm"
+                    }
+                ],
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": null,
+                        "aws_access_key": null,
+                        "aws_secret_key": null,
+                        "count": 1,
+                        "count_tag": {
+                            "application": "appservers"
+                        },
+                        "debug_botocore_endpoint_logs": false,
+                        "ebs_optimized": false,
+                        "ec2_url": null,
+                        "exact_count": null,
+                        "group": null,
+                        "group_id": [
+                            "sg-04f285120f20abc22"
+                        ],
+                        "id": null,
+                        "image": "ami-0a74bfeb190bd404f",
+                        "instance_ids": null,
+                        "instance_initiated_shutdown_behavior": "stop",
+                        "instance_profile_name": null,
+                        "instance_tags": {
+                            "Name": "INST3-SUBPRI2-VPCA",
+                            "Privateip": "INST3SUBPRI2VPCAPRIVATEIP",
+                            "Publicip": "INST3SUBPRI2VPCAPUBLICIP"
+                        },
+                        "instance_type": "t2.micro",
+                        "kernel": null,
+                        "key_name": "myprimeadmkeypair",
+                        "monitoring": false,
+                        "network_interfaces": null,
+                        "placement_group": null,
+                        "private_ip": null,
+                        "profile": null,
+                        "ramdisk": null,
+                        "region": "ap-south-1",
+                        "security_token": null,
+                        "source_dest_check": null,
+                        "spot_launch_group": null,
+                        "spot_price": null,
+                        "spot_type": "one-time",
+                        "spot_wait_timeout": 600,
+                        "state": "present",
+                        "tenancy": "default",
+                        "termination_protection": null,
+                        "user_data": null,
+                        "validate_certs": true,
+                        "volumes": null,
+                        "vpc_subnet_id": "subnet-014ca81e19f6283d1",
+                        "wait": true,
+                        "wait_timeout": 300,
+                        "zone": null
+                    }
+                },
+                "item": [
+                    {
+                        "instname": "INST3-SUBPRI2-VPCA"
+                    },
+                    {
+                        "insasspubip": false,
+                        "inscount": 1,
+                        "insimage": "ami-0a74bfeb190bd404f",
+                        "inskeyname": "myprimeadmkeypair",
+                        "inspriiptag": "INST3SUBPRI2VPCAPRIVATEIP",
+                        "inspubiptag": "INST3SUBPRI2VPCAPUBLICIP",
+                        "insregion": "ap-south-1",
+                        "inssecgrp": "sg-04f285120f20abc22",
+                        "instags": "INSTANCESUBPRI2VPCA-INST2-SUBPRI2-VPCA",
+                        "instype": "t2.micro",
+                        "insvpcsubnetid": "subnet-014ca81e19f6283d1"
+                    }
+                ],
+                "tagged_instances": []
+            }
+        ]
+    }
+}
+
+TASK [setfactsget public ipaddresses of instances into dict] ****************************************************************************
+task path: /etc/ansible/ap-south-1/8_auto-crt-app-subpri-inst.yaml:32
+ok: [localhost] => (item={'changed': True, 'instance_ids': ['i-0796d708cc84a1280'], 'instances': [{'id': 'i-0796d708cc84a1280', 'ami_launch_index': '0', 'private_ip': '10.0.2.144', 'private_dns_name': 'ip-10-0-2-144.ap-south-1.compute.internal', 'public_ip': None, 'dns_name': '', 'public_dns_name': '', 'state_code': 16, 'architecture': 'x86_64', 'image_id': 'ami-0a74bfeb190bd404f', 'key_name': 'myprimeadmkeypair', 'placement': 'ap-south-1a', 'region': 'ap-south-1', 'kernel': None, 'ramdisk': None, 'launch_time': '2019-07-12T20:12:57.000Z', 'instance_type': 't2.micro', 'root_device_type': 'ebs', 'root_device_name': '/dev/sda1', 'state': 'running', 'hypervisor': 'xen', 'tags': {'Privateip': 'INST3SUBPRI2VPCAPRIVATEIP', 'Name': 'INST3-SUBPRI2-VPCA', 'Publicip': 'INST3SUBPRI2VPCAPUBLICIP'}, 'groups': {'sg-04f285120f20abc22': 'appinst-vpca'}, 'virtualization_type': 'hvm', 'ebs_optimized': False, 'block_device_mapping': {'/dev/sda1': {'status': 'attached', 'volume_id': 'vol-02ed3631337772049', 'delete_on_termination': True}}, 'tenancy': 'default'}], 'tagged_instances': [], 'invocation': {'module_args': {'key_name': 'myprimeadmkeypair', 'instance_type': 't2.micro', 'image': 'ami-0a74bfeb190bd404f', 'region': 'ap-south-1', 'group_id': ['sg-04f285120f20abc22'], 'wait': True, 'instance_tags': {'Name': 'INST3-SUBPRI2-VPCA', 'Publicip': 'INST3SUBPRI2VPCAPUBLICIP', 'Privateip': 'INST3SUBPRI2VPCAPRIVATEIP'}, 'count': 1, 'count_tag': {'application': 'appservers'}, 'vpc_subnet_id': 'subnet-014ca81e19f6283d1', 'state': 'present', 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'spot_type': 'one-time', 'monitoring': False, 'wait_timeout': 300, 'spot_wait_timeout': 600, 'instance_initiated_shutdown_behavior': 'stop', 'ebs_optimized': False, 'tenancy': 'default', 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'id': None, 'group': None, 'zone': None, 'spot_price': None, 'spot_launch_group': None, 'kernel': None, 'ramdisk': None, 'placement_group': None, 'user_data': None, 'assign_public_ip': None, 'private_ip': None, 'instance_profile_name': None, 'instance_ids': None, 'source_dest_check': None, 'termination_protection': None, 'exact_count': None, 'volumes': None, 'network_interfaces': None}}, 'failed': False, 'item': [{'instname': 'INST3-SUBPRI2-VPCA'}, {'inskeyname': 'myprimeadmkeypair', 'instype': 't2.micro', 'insimage': 'ami-0a74bfeb190bd404f', 'insregion': 'ap-south-1', 'inssecgrp': 'sg-04f285120f20abc22', 'instags': 'INSTANCESUBPRI2VPCA-INST2-SUBPRI2-VPCA', 'inspubiptag': 'INST3SUBPRI2VPCAPUBLICIP', 'inspriiptag': 'INST3SUBPRI2VPCAPRIVATEIP', 'inscount': 1, 'insvpcsubnetid': 'subnet-014ca81e19f6283d1', 'insasspubip': False}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "appprisubs_vpca_instances": {
+            "INST3-SUBPRI2-VPCA": [
+                "i-0796d708cc84a1280"
+            ]
+        },
+        "appprisubs_vpca_priips": {
+            "INST3SUBPRI2VPCAPRIVATEIP": "10.0.2.144"
+        },
+        "appprisubs_vpca_pubips": {
+            "INST3SUBPRI2VPCAPUBLICIP": null
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": true,
+        "failed": false,
+        "instance_ids": [
+            "i-0796d708cc84a1280"
+        ],
+        "instances": [
+            {
+                "ami_launch_index": "0",
+                "architecture": "x86_64",
+                "block_device_mapping": {
+                    "/dev/sda1": {
+                        "delete_on_termination": true,
+                        "status": "attached",
+                        "volume_id": "vol-02ed3631337772049"
+                    }
+                },
+                "dns_name": "",
+                "ebs_optimized": false,
+                "groups": {
+                    "sg-04f285120f20abc22": "appinst-vpca"
+                },
+                "hypervisor": "xen",
+                "id": "i-0796d708cc84a1280",
+                "image_id": "ami-0a74bfeb190bd404f",
+                "instance_type": "t2.micro",
+                "kernel": null,
+                "key_name": "myprimeadmkeypair",
+                "launch_time": "2019-07-12T20:12:57.000Z",
+                "placement": "ap-south-1a",
+                "private_dns_name": "ip-10-0-2-144.ap-south-1.compute.internal",
+                "private_ip": "10.0.2.144",
+                "public_dns_name": "",
+                "public_ip": null,
+                "ramdisk": null,
+                "region": "ap-south-1",
+                "root_device_name": "/dev/sda1",
+                "root_device_type": "ebs",
+                "state": "running",
+                "state_code": 16,
+                "tags": {
+                    "Name": "INST3-SUBPRI2-VPCA",
+                    "Privateip": "INST3SUBPRI2VPCAPRIVATEIP",
+                    "Publicip": "INST3SUBPRI2VPCAPUBLICIP"
+                },
+                "tenancy": "default",
+                "virtualization_type": "hvm"
+            }
+        ],
+        "invocation": {
+            "module_args": {
+                "assign_public_ip": null,
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "count": 1,
+                "count_tag": {
+                    "application": "appservers"
+                },
+                "debug_botocore_endpoint_logs": false,
+                "ebs_optimized": false,
+                "ec2_url": null,
+                "exact_count": null,
+                "group": null,
+                "group_id": [
+                    "sg-04f285120f20abc22"
+                ],
+                "id": null,
+                "image": "ami-0a74bfeb190bd404f",
+                "instance_ids": null,
+                "instance_initiated_shutdown_behavior": "stop",
+                "instance_profile_name": null,
+                "instance_tags": {
+                    "Name": "INST3-SUBPRI2-VPCA",
+                    "Privateip": "INST3SUBPRI2VPCAPRIVATEIP",
+                    "Publicip": "INST3SUBPRI2VPCAPUBLICIP"
+                },
+                "instance_type": "t2.micro",
+                "kernel": null,
+                "key_name": "myprimeadmkeypair",
+                "monitoring": false,
+                "network_interfaces": null,
+                "placement_group": null,
+                "private_ip": null,
+                "profile": null,
+                "ramdisk": null,
+                "region": "ap-south-1",
+                "security_token": null,
+                "source_dest_check": null,
+                "spot_launch_group": null,
+                "spot_price": null,
+                "spot_type": "one-time",
+                "spot_wait_timeout": 600,
+                "state": "present",
+                "tenancy": "default",
+                "termination_protection": null,
+                "user_data": null,
+                "validate_certs": true,
+                "volumes": null,
+                "vpc_subnet_id": "subnet-014ca81e19f6283d1",
+                "wait": true,
+                "wait_timeout": 300,
+                "zone": null
+            }
+        },
+        "item": [
+            {
+                "instname": "INST3-SUBPRI2-VPCA"
+            },
+            {
+                "insasspubip": false,
+                "inscount": 1,
+                "insimage": "ami-0a74bfeb190bd404f",
+                "inskeyname": "myprimeadmkeypair",
+                "inspriiptag": "INST3SUBPRI2VPCAPRIVATEIP",
+                "inspubiptag": "INST3SUBPRI2VPCAPUBLICIP",
+                "insregion": "ap-south-1",
+                "inssecgrp": "sg-04f285120f20abc22",
+                "instags": "INSTANCESUBPRI2VPCA-INST2-SUBPRI2-VPCA",
+                "instype": "t2.micro",
+                "insvpcsubnetid": "subnet-014ca81e19f6283d1"
+            }
+        ],
+        "tagged_instances": []
+    }
+}
+
+TASK [debug pubsubs_vpca_instances] *****************************************************************************************************
+task path: /etc/ansible/ap-south-1/8_auto-crt-app-subpri-inst.yaml:40
+ok: [localhost] => {
+    "msg": [
+        {
+            "INST3-SUBPRI2-VPCA": [
+                "i-0796d708cc84a1280"
+            ]
+        },
+        {
+            "INST3SUBPRI2VPCAPUBLICIP": null
+        },
+        {
+            "INST3SUBPRI2VPCAPRIVATEIP": "10.0.2.144"
+        }
+    ]
+}
+
+TASK [copy all6yaml to all7yaml] ********************************************************************************************************
+task path: /etc/ansible/ap-south-1/8_auto-crt-app-subpri-inst.yaml:47
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531 `" && echo ansible-tmp-1562962398.9030802-111323769067531="` echo /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/stat.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-6367fgf0qtdq/tmpr_tu3fiw TO /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/AnsiballZ_stat.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/ /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/AnsiballZ_stat.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/AnsiballZ_stat.py && sleep 0'
+<127.0.0.1> PUT /etc/ansible/ap-south-1/group_vars/all6.yaml TO /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/source
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/ /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/source && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/copy.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-6367fgf0qtdq/tmpvh5rsrbf TO /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/AnsiballZ_copy.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/ /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/AnsiballZ_copy.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/AnsiballZ_copy.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => {
+    "changed": true,
+    "checksum": "87159eb41b13628badf5ac52a959ae3c635b6541",
+    "dest": "/etc/ansible/ap-south-1/group_vars/all7.yaml",
+    "diff": [],
+    "gid": 0,
+    "group": "root",
+    "invocation": {
+        "module_args": {
+            "_original_basename": "all6.yaml",
+            "attributes": null,
+            "backup": false,
+            "checksum": "87159eb41b13628badf5ac52a959ae3c635b6541",
+            "content": null,
+            "delimiter": null,
+            "dest": "/etc/ansible/ap-south-1/group_vars/all7.yaml",
+            "directory_mode": null,
+            "follow": false,
+            "force": true,
+            "group": null,
+            "local_follow": null,
+            "mode": null,
+            "owner": null,
+            "regexp": null,
+            "remote_src": null,
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": "/root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/source",
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "md5sum": "9f7698919a4801f93f7fbbdbdc1a99e6",
+    "mode": "0644",
+    "owner": "root",
+    "secontext": "system_u:object_r:etc_t:s0",
+    "size": 7120,
+    "src": "/root/.ansible/tmp/ansible-tmp-1562962398.9030802-111323769067531/source",
+    "state": "file",
+    "uid": 0
+}
+
+TASK [replace the keys and values from loops] *******************************************************************************************
+task path: /etc/ansible/ap-south-1/8_auto-crt-app-subpri-inst.yaml:52
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562962399.6888034-237157103076844 `" && echo ansible-tmp-1562962399.6888034-237157103076844="` echo /root/.ansible/tmp/ansible-tmp-1562962399.6888034-237157103076844 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-6367fgf0qtdq/tmpol8k66l3 TO /root/.ansible/tmp/ansible-tmp-1562962399.6888034-237157103076844/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962399.6888034-237157103076844/ /root/.ansible/tmp/ansible-tmp-1562962399.6888034-237157103076844/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562962399.6888034-237157103076844/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562962399.6888034-237157103076844/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item={'key': 'INST3SUBPRI2VPCAPUBLICIP', 'value': None}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all7.yaml",
+            "regexp": "INST3SUBPRI2VPCAPUBLICIP",
+            "remote_src": null,
+            "replace": "/32",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "INST3SUBPRI2VPCAPUBLICIP",
+        "value": null
+    },
+    "msg": "1 replacements made"
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562962400.0769112-261336608226080 `" && echo ansible-tmp-1562962400.0769112-261336608226080="` echo /root/.ansible/tmp/ansible-tmp-1562962400.0769112-261336608226080 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-6367fgf0qtdq/tmphkkpywat TO /root/.ansible/tmp/ansible-tmp-1562962400.0769112-261336608226080/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962400.0769112-261336608226080/ /root/.ansible/tmp/ansible-tmp-1562962400.0769112-261336608226080/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562962400.0769112-261336608226080/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562962400.0769112-261336608226080/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item={'key': 'INST3SUBPRI2VPCAPRIVATEIP', 'value': '10.0.2.144'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all7.yaml",
+            "regexp": "INST3SUBPRI2VPCAPRIVATEIP",
+            "remote_src": null,
+            "replace": "10.0.2.144/32",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "INST3SUBPRI2VPCAPRIVATEIP",
+        "value": "10.0.2.144"
+    },
+    "msg": "2 replacements made"
+}
+
+TASK [replace the keys and values from loops] *******************************************************************************************
+task path: /etc/ansible/ap-south-1/8_auto-crt-app-subpri-inst.yaml:62
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562962400.33816-135996515770303 `" && echo ansible-tmp-1562962400.33816-135996515770303="` echo /root/.ansible/tmp/ansible-tmp-1562962400.33816-135996515770303 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-6367fgf0qtdq/tmp1f3qc_8u TO /root/.ansible/tmp/ansible-tmp-1562962400.33816-135996515770303/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562962400.33816-135996515770303/ /root/.ansible/tmp/ansible-tmp-1562962400.33816-135996515770303/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562962400.33816-135996515770303/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562962400.33816-135996515770303/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item={'key': 'INST3-SUBPRI2-VPCA', 'value': ['i-0796d708cc84a1280']}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all7.yaml",
+            "regexp": "INST3-SUBPRI2-VPCA",
+            "remote_src": null,
+            "replace": "['i-0796d708cc84a1280']",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "INST3-SUBPRI2-VPCA",
+        "value": [
+            "i-0796d708cc84a1280"
+        ]
+    },
+    "msg": "1 replacements made",
+    "warnings": [
+        "The value ['i-0796d708cc84a1280'] (type list) in a string field was converted to \"['i-0796d708cc84a1280']\" (type string). If this does not look like what you expect, quote the entire value to ensure it does not change."
+    ]
+}
+META: ran handlers
+META: ran handlers
+
+PLAY RECAP ******************************************************************************************************************************
+localhost                  : ok=8    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

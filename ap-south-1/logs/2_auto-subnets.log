@@ -1,0 +1,1833 @@
+ansible-playbook 2.8.2
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python3.6/site-packages/ansible
+  executable location = /usr/local/bin/ansible-playbook
+  python version = 3.6.8 (default, Apr  3 2019, 17:26:03) [GCC 8.2.1 20180905 (Red Hat 8.2.1-3)]
+Using /etc/ansible/ansible.cfg as config file
+setting up inventory plugins
+host_list declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+script declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+auto declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+yaml declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+ini declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+toml declined parsing /etc/ansible/ap-south-1/ec2.py as it did not pass it's verify_file() method
+Loading callback plugin default of type stdout, v2.0 from /usr/local/lib/python3.6/site-packages/ansible/plugins/callback/default.py
+
+PLAYBOOK: 2_auto-subnets.yaml ***********************************************************************************************************
+Positional arguments: /etc/ansible/ap-south-1/2_auto-subnets.yaml
+verbosity: 4
+private_key_file: /home/ec2-user/mykeypair
+connection: smart
+timeout: 10
+become_method: sudo
+tags: ('all',)
+inventory: ('/etc/ansible/ap-south-1/ec2.py',)
+extra_vars: ('@/etc/ansible/ap-south-1/group_vars/all2.yaml',)
+forks: 5
+1 plays in /etc/ansible/ap-south-1/2_auto-subnets.yaml
+
+PLAY [localhost] ************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************
+task path: /etc/ansible/ap-south-1/2_auto-subnets.yaml:2
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954935.5317836-215636639732644 `" && echo ansible-tmp-1562954935.5317836-215636639732644="` echo /root/.ansible/tmp/ansible-tmp-1562954935.5317836-215636639732644 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/system/setup.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmph7ap015p TO /root/.ansible/tmp/ansible-tmp-1562954935.5317836-215636639732644/AnsiballZ_setup.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954935.5317836-215636639732644/ /root/.ansible/tmp/ansible-tmp-1562954935.5317836-215636639732644/AnsiballZ_setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954935.5317836-215636639732644/AnsiballZ_setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954935.5317836-215636639732644/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost]
+META: ran handlers
+
+TASK [create subnets for az apsouth1a] **************************************************************************************************
+task path: /etc/ansible/ap-south-1/2_auto-subnets.yaml:7
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954936.5427203-280189061962140 `" && echo ansible-tmp-1562954936.5427203-280189061962140="` echo /root/.ansible/tmp/ansible-tmp-1562954936.5427203-280189061962140 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_vpc_subnet.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmp17g1tbvo TO /root/.ansible/tmp/ansible-tmp-1562954936.5427203-280189061962140/AnsiballZ_ec2_vpc_subnet.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954936.5427203-280189061962140/ /root/.ansible/tmp/ansible-tmp-1562954936.5427203-280189061962140/AnsiballZ_ec2_vpc_subnet.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954936.5427203-280189061962140/AnsiballZ_ec2_vpc_subnet.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954936.5427203-280189061962140/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item=[{'subnetname': 'SUB1-PUB-VPCA'}, {'subcidr': '10.0.1.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-03f14f659c6c1c8b7', 'subtags': 'publicsubnet-vpc1', 'sumap_public': True}]) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "assign_instances_ipv6": false,
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "az": "ap-south-1a",
+            "cidr": "10.0.1.0/24",
+            "debug_botocore_endpoint_logs": false,
+            "ec2_url": null,
+            "ipv6_cidr": "",
+            "map_public": true,
+            "profile": null,
+            "purge_tags": true,
+            "region": "ap-south-1",
+            "resource_tags": {
+                "Name": "SUB1-PUB-VPCA"
+            },
+            "security_token": null,
+            "state": "present",
+            "tags": {
+                "Name": "SUB1-PUB-VPCA"
+            },
+            "validate_certs": true,
+            "vpc_id": "vpc-03f14f659c6c1c8b7",
+            "wait": true,
+            "wait_timeout": 300
+        }
+    },
+    "item": [
+        {
+            "subnetname": "SUB1-PUB-VPCA"
+        },
+        {
+            "subaz": "ap-south-1a",
+            "subcidr": "10.0.1.0/24",
+            "subreg": "ap-south-1",
+            "subtags": "publicsubnet-vpc1",
+            "subvpcid": "vpc-03f14f659c6c1c8b7",
+            "sumap_public": true
+        }
+    ],
+    "subnet": {
+        "assign_ipv6_address_on_creation": false,
+        "availability_zone": "ap-south-1a",
+        "availability_zone_id": "aps1-az1",
+        "available_ip_address_count": 251,
+        "cidr_block": "10.0.1.0/24",
+        "default_for_az": false,
+        "id": "subnet-0e6eaab33cdc394d6",
+        "ipv6_association_id": "",
+        "ipv6_cidr_block": "",
+        "ipv6_cidr_block_association_set": [],
+        "map_public_ip_on_launch": true,
+        "owner_id": "802778636482",
+        "state": "available",
+        "subnet_arn": "arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0e6eaab33cdc394d6",
+        "tags": {
+            "Name": "SUB1-PUB-VPCA"
+        },
+        "vpc_id": "vpc-03f14f659c6c1c8b7"
+    }
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954938.3091283-218492788481303 `" && echo ansible-tmp-1562954938.3091283-218492788481303="` echo /root/.ansible/tmp/ansible-tmp-1562954938.3091283-218492788481303 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_vpc_subnet.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmpc2le3xd6 TO /root/.ansible/tmp/ansible-tmp-1562954938.3091283-218492788481303/AnsiballZ_ec2_vpc_subnet.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954938.3091283-218492788481303/ /root/.ansible/tmp/ansible-tmp-1562954938.3091283-218492788481303/AnsiballZ_ec2_vpc_subnet.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954938.3091283-218492788481303/AnsiballZ_ec2_vpc_subnet.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954938.3091283-218492788481303/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item=[{'subnetname': 'SUB2-PRI-VPCA'}, {'subcidr': '10.0.2.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-03f14f659c6c1c8b7', 'subtags': 'privatesubnet-vpc1', 'sumap_public': False}]) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "assign_instances_ipv6": false,
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "az": "ap-south-1a",
+            "cidr": "10.0.2.0/24",
+            "debug_botocore_endpoint_logs": false,
+            "ec2_url": null,
+            "ipv6_cidr": "",
+            "map_public": false,
+            "profile": null,
+            "purge_tags": true,
+            "region": "ap-south-1",
+            "resource_tags": {
+                "Name": "SUB2-PRI-VPCA"
+            },
+            "security_token": null,
+            "state": "present",
+            "tags": {
+                "Name": "SUB2-PRI-VPCA"
+            },
+            "validate_certs": true,
+            "vpc_id": "vpc-03f14f659c6c1c8b7",
+            "wait": true,
+            "wait_timeout": 300
+        }
+    },
+    "item": [
+        {
+            "subnetname": "SUB2-PRI-VPCA"
+        },
+        {
+            "subaz": "ap-south-1a",
+            "subcidr": "10.0.2.0/24",
+            "subreg": "ap-south-1",
+            "subtags": "privatesubnet-vpc1",
+            "subvpcid": "vpc-03f14f659c6c1c8b7",
+            "sumap_public": false
+        }
+    ],
+    "subnet": {
+        "assign_ipv6_address_on_creation": false,
+        "availability_zone": "ap-south-1a",
+        "availability_zone_id": "aps1-az1",
+        "available_ip_address_count": 251,
+        "cidr_block": "10.0.2.0/24",
+        "default_for_az": false,
+        "id": "subnet-014ca81e19f6283d1",
+        "ipv6_association_id": "",
+        "ipv6_cidr_block": "",
+        "ipv6_cidr_block_association_set": [],
+        "map_public_ip_on_launch": false,
+        "owner_id": "802778636482",
+        "state": "available",
+        "subnet_arn": "arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-014ca81e19f6283d1",
+        "tags": {
+            "Name": "SUB2-PRI-VPCA"
+        },
+        "vpc_id": "vpc-03f14f659c6c1c8b7"
+    }
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954939.488737-51550848904065 `" && echo ansible-tmp-1562954939.488737-51550848904065="` echo /root/.ansible/tmp/ansible-tmp-1562954939.488737-51550848904065 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_vpc_subnet.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmpg8uk4kv3 TO /root/.ansible/tmp/ansible-tmp-1562954939.488737-51550848904065/AnsiballZ_ec2_vpc_subnet.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954939.488737-51550848904065/ /root/.ansible/tmp/ansible-tmp-1562954939.488737-51550848904065/AnsiballZ_ec2_vpc_subnet.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954939.488737-51550848904065/AnsiballZ_ec2_vpc_subnet.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954939.488737-51550848904065/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item=[{'subnetname': 'SUB3-PRI-VPCA'}, {'subcidr': '10.0.3.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-03f14f659c6c1c8b7', 'subtags': 'privatesubnet-vpc1', 'sumap_public': False}]) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "assign_instances_ipv6": false,
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "az": "ap-south-1a",
+            "cidr": "10.0.3.0/24",
+            "debug_botocore_endpoint_logs": false,
+            "ec2_url": null,
+            "ipv6_cidr": "",
+            "map_public": false,
+            "profile": null,
+            "purge_tags": true,
+            "region": "ap-south-1",
+            "resource_tags": {
+                "Name": "SUB3-PRI-VPCA"
+            },
+            "security_token": null,
+            "state": "present",
+            "tags": {
+                "Name": "SUB3-PRI-VPCA"
+            },
+            "validate_certs": true,
+            "vpc_id": "vpc-03f14f659c6c1c8b7",
+            "wait": true,
+            "wait_timeout": 300
+        }
+    },
+    "item": [
+        {
+            "subnetname": "SUB3-PRI-VPCA"
+        },
+        {
+            "subaz": "ap-south-1a",
+            "subcidr": "10.0.3.0/24",
+            "subreg": "ap-south-1",
+            "subtags": "privatesubnet-vpc1",
+            "subvpcid": "vpc-03f14f659c6c1c8b7",
+            "sumap_public": false
+        }
+    ],
+    "subnet": {
+        "assign_ipv6_address_on_creation": false,
+        "availability_zone": "ap-south-1a",
+        "availability_zone_id": "aps1-az1",
+        "available_ip_address_count": 251,
+        "cidr_block": "10.0.3.0/24",
+        "default_for_az": false,
+        "id": "subnet-0f4ad444fd5ce1395",
+        "ipv6_association_id": "",
+        "ipv6_cidr_block": "",
+        "ipv6_cidr_block_association_set": [],
+        "map_public_ip_on_launch": false,
+        "owner_id": "802778636482",
+        "state": "available",
+        "subnet_arn": "arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0f4ad444fd5ce1395",
+        "tags": {
+            "Name": "SUB3-PRI-VPCA"
+        },
+        "vpc_id": "vpc-03f14f659c6c1c8b7"
+    }
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954940.7727768-169456593978851 `" && echo ansible-tmp-1562954940.7727768-169456593978851="` echo /root/.ansible/tmp/ansible-tmp-1562954940.7727768-169456593978851 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_vpc_subnet.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmpmpiki6xf TO /root/.ansible/tmp/ansible-tmp-1562954940.7727768-169456593978851/AnsiballZ_ec2_vpc_subnet.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954940.7727768-169456593978851/ /root/.ansible/tmp/ansible-tmp-1562954940.7727768-169456593978851/AnsiballZ_ec2_vpc_subnet.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954940.7727768-169456593978851/AnsiballZ_ec2_vpc_subnet.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954940.7727768-169456593978851/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item=[{'subnetname': 'SUB4-PRI-VPCB'}, {'subcidr': '10.1.1.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-0195c1d6ee5610e98', 'subtags': 'privatesubnet-vpc2', 'sumap_public': False}]) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "assign_instances_ipv6": false,
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "az": "ap-south-1a",
+            "cidr": "10.1.1.0/24",
+            "debug_botocore_endpoint_logs": false,
+            "ec2_url": null,
+            "ipv6_cidr": "",
+            "map_public": false,
+            "profile": null,
+            "purge_tags": true,
+            "region": "ap-south-1",
+            "resource_tags": {
+                "Name": "SUB4-PRI-VPCB"
+            },
+            "security_token": null,
+            "state": "present",
+            "tags": {
+                "Name": "SUB4-PRI-VPCB"
+            },
+            "validate_certs": true,
+            "vpc_id": "vpc-0195c1d6ee5610e98",
+            "wait": true,
+            "wait_timeout": 300
+        }
+    },
+    "item": [
+        {
+            "subnetname": "SUB4-PRI-VPCB"
+        },
+        {
+            "subaz": "ap-south-1a",
+            "subcidr": "10.1.1.0/24",
+            "subreg": "ap-south-1",
+            "subtags": "privatesubnet-vpc2",
+            "subvpcid": "vpc-0195c1d6ee5610e98",
+            "sumap_public": false
+        }
+    ],
+    "subnet": {
+        "assign_ipv6_address_on_creation": false,
+        "availability_zone": "ap-south-1a",
+        "availability_zone_id": "aps1-az1",
+        "available_ip_address_count": 251,
+        "cidr_block": "10.1.1.0/24",
+        "default_for_az": false,
+        "id": "subnet-0b31ab7d107a97433",
+        "ipv6_association_id": "",
+        "ipv6_cidr_block": "",
+        "ipv6_cidr_block_association_set": [],
+        "map_public_ip_on_launch": false,
+        "owner_id": "802778636482",
+        "state": "available",
+        "subnet_arn": "arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0b31ab7d107a97433",
+        "tags": {
+            "Name": "SUB4-PRI-VPCB"
+        },
+        "vpc_id": "vpc-0195c1d6ee5610e98"
+    }
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954942.0485938-47307739800566 `" && echo ansible-tmp-1562954942.0485938-47307739800566="` echo /root/.ansible/tmp/ansible-tmp-1562954942.0485938-47307739800566 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_vpc_subnet.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmp6chs9xaf TO /root/.ansible/tmp/ansible-tmp-1562954942.0485938-47307739800566/AnsiballZ_ec2_vpc_subnet.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954942.0485938-47307739800566/ /root/.ansible/tmp/ansible-tmp-1562954942.0485938-47307739800566/AnsiballZ_ec2_vpc_subnet.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954942.0485938-47307739800566/AnsiballZ_ec2_vpc_subnet.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954942.0485938-47307739800566/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item=[{'subnetname': 'SUB6-PUB-VPCB'}, {'subcidr': '10.1.2.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-0195c1d6ee5610e98', 'subtags': 'publicsubnet-vpc2', 'sumap_public': False}]) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "assign_instances_ipv6": false,
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "az": "ap-south-1a",
+            "cidr": "10.1.2.0/24",
+            "debug_botocore_endpoint_logs": false,
+            "ec2_url": null,
+            "ipv6_cidr": "",
+            "map_public": false,
+            "profile": null,
+            "purge_tags": true,
+            "region": "ap-south-1",
+            "resource_tags": {
+                "Name": "SUB6-PUB-VPCB"
+            },
+            "security_token": null,
+            "state": "present",
+            "tags": {
+                "Name": "SUB6-PUB-VPCB"
+            },
+            "validate_certs": true,
+            "vpc_id": "vpc-0195c1d6ee5610e98",
+            "wait": true,
+            "wait_timeout": 300
+        }
+    },
+    "item": [
+        {
+            "subnetname": "SUB6-PUB-VPCB"
+        },
+        {
+            "subaz": "ap-south-1a",
+            "subcidr": "10.1.2.0/24",
+            "subreg": "ap-south-1",
+            "subtags": "publicsubnet-vpc2",
+            "subvpcid": "vpc-0195c1d6ee5610e98",
+            "sumap_public": false
+        }
+    ],
+    "subnet": {
+        "assign_ipv6_address_on_creation": false,
+        "availability_zone": "ap-south-1a",
+        "availability_zone_id": "aps1-az1",
+        "available_ip_address_count": 251,
+        "cidr_block": "10.1.2.0/24",
+        "default_for_az": false,
+        "id": "subnet-01306dd19c6fd38a3",
+        "ipv6_association_id": "",
+        "ipv6_cidr_block": "",
+        "ipv6_cidr_block_association_set": [],
+        "map_public_ip_on_launch": false,
+        "owner_id": "802778636482",
+        "state": "available",
+        "subnet_arn": "arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-01306dd19c6fd38a3",
+        "tags": {
+            "Name": "SUB6-PUB-VPCB"
+        },
+        "vpc_id": "vpc-0195c1d6ee5610e98"
+    }
+}
+
+TASK [create subnets for az apsouth1b] **************************************************************************************************
+task path: /etc/ansible/ap-south-1/2_auto-subnets.yaml:25
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954943.4854841-161405538649450 `" && echo ansible-tmp-1562954943.4854841-161405538649450="` echo /root/.ansible/tmp/ansible-tmp-1562954943.4854841-161405538649450 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_vpc_subnet.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmpty117zfy TO /root/.ansible/tmp/ansible-tmp-1562954943.4854841-161405538649450/AnsiballZ_ec2_vpc_subnet.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954943.4854841-161405538649450/ /root/.ansible/tmp/ansible-tmp-1562954943.4854841-161405538649450/AnsiballZ_ec2_vpc_subnet.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954943.4854841-161405538649450/AnsiballZ_ec2_vpc_subnet.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954943.4854841-161405538649450/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item=[{'subnetname': 'SUB5-PUB-VPCA'}, {'subcidr': '10.0.5.0/24', 'subaz': 'ap-south-1b', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-03f14f659c6c1c8b7', 'subtags': 'publicsubnet-vpc1', 'sumap_public': True}]) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "assign_instances_ipv6": false,
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "az": "ap-south-1b",
+            "cidr": "10.0.5.0/24",
+            "debug_botocore_endpoint_logs": false,
+            "ec2_url": null,
+            "ipv6_cidr": "",
+            "map_public": true,
+            "profile": null,
+            "purge_tags": true,
+            "region": "ap-south-1",
+            "resource_tags": {
+                "Name": "SUB5-PUB-VPCA"
+            },
+            "security_token": null,
+            "state": "present",
+            "tags": {
+                "Name": "SUB5-PUB-VPCA"
+            },
+            "validate_certs": true,
+            "vpc_id": "vpc-03f14f659c6c1c8b7",
+            "wait": true,
+            "wait_timeout": 300
+        }
+    },
+    "item": [
+        {
+            "subnetname": "SUB5-PUB-VPCA"
+        },
+        {
+            "subaz": "ap-south-1b",
+            "subcidr": "10.0.5.0/24",
+            "subreg": "ap-south-1",
+            "subtags": "publicsubnet-vpc1",
+            "subvpcid": "vpc-03f14f659c6c1c8b7",
+            "sumap_public": true
+        }
+    ],
+    "subnet": {
+        "assign_ipv6_address_on_creation": false,
+        "availability_zone": "ap-south-1b",
+        "availability_zone_id": "aps1-az3",
+        "available_ip_address_count": 251,
+        "cidr_block": "10.0.5.0/24",
+        "default_for_az": false,
+        "id": "subnet-05181281f5747a923",
+        "ipv6_association_id": "",
+        "ipv6_cidr_block": "",
+        "ipv6_cidr_block_association_set": [],
+        "map_public_ip_on_launch": true,
+        "owner_id": "802778636482",
+        "state": "available",
+        "subnet_arn": "arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-05181281f5747a923",
+        "tags": {
+            "Name": "SUB5-PUB-VPCA"
+        },
+        "vpc_id": "vpc-03f14f659c6c1c8b7"
+    }
+}
+
+TASK [set facts of subnet id's] *********************************************************************************************************
+task path: /etc/ansible/ap-south-1/2_auto-subnets.yaml:43
+ok: [localhost] => (item={'changed': True, 'subnet': {'availability_zone': 'ap-south-1a', 'availability_zone_id': 'aps1-az1', 'available_ip_address_count': 251, 'cidr_block': '10.0.1.0/24', 'default_for_az': False, 'map_public_ip_on_launch': True, 'state': 'available', 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'owner_id': '802778636482', 'assign_ipv6_address_on_creation': False, 'ipv6_cidr_block_association_set': [], 'tags': {'Name': 'SUB1-PUB-VPCA'}, 'subnet_arn': 'arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0e6eaab33cdc394d6', 'id': 'subnet-0e6eaab33cdc394d6', 'ipv6_cidr_block': '', 'ipv6_association_id': ''}, 'invocation': {'module_args': {'state': 'present', 'tags': {'Name': 'SUB1-PUB-VPCA'}, 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'region': 'ap-south-1', 'cidr': '10.0.1.0/24', 'az': 'ap-south-1a', 'map_public': True, 'resource_tags': {'Name': 'SUB1-PUB-VPCA'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ipv6_cidr': '', 'assign_instances_ipv6': False, 'wait': True, 'wait_timeout': 300, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': [{'subnetname': 'SUB1-PUB-VPCA'}, {'subcidr': '10.0.1.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-03f14f659c6c1c8b7', 'subtags': 'publicsubnet-vpc1', 'sumap_public': True}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "subnet_ids": {
+            "SUB1-PUB-VPCA": "subnet-0e6eaab33cdc394d6"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": true,
+        "failed": false,
+        "invocation": {
+            "module_args": {
+                "assign_instances_ipv6": false,
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "az": "ap-south-1a",
+                "cidr": "10.0.1.0/24",
+                "debug_botocore_endpoint_logs": false,
+                "ec2_url": null,
+                "ipv6_cidr": "",
+                "map_public": true,
+                "profile": null,
+                "purge_tags": true,
+                "region": "ap-south-1",
+                "resource_tags": {
+                    "Name": "SUB1-PUB-VPCA"
+                },
+                "security_token": null,
+                "state": "present",
+                "tags": {
+                    "Name": "SUB1-PUB-VPCA"
+                },
+                "validate_certs": true,
+                "vpc_id": "vpc-03f14f659c6c1c8b7",
+                "wait": true,
+                "wait_timeout": 300
+            }
+        },
+        "item": [
+            {
+                "subnetname": "SUB1-PUB-VPCA"
+            },
+            {
+                "subaz": "ap-south-1a",
+                "subcidr": "10.0.1.0/24",
+                "subreg": "ap-south-1",
+                "subtags": "publicsubnet-vpc1",
+                "subvpcid": "vpc-03f14f659c6c1c8b7",
+                "sumap_public": true
+            }
+        ],
+        "subnet": {
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "ap-south-1a",
+            "availability_zone_id": "aps1-az1",
+            "available_ip_address_count": 251,
+            "cidr_block": "10.0.1.0/24",
+            "default_for_az": false,
+            "id": "subnet-0e6eaab33cdc394d6",
+            "ipv6_association_id": "",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_set": [],
+            "map_public_ip_on_launch": true,
+            "owner_id": "802778636482",
+            "state": "available",
+            "subnet_arn": "arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0e6eaab33cdc394d6",
+            "tags": {
+                "Name": "SUB1-PUB-VPCA"
+            },
+            "vpc_id": "vpc-03f14f659c6c1c8b7"
+        }
+    }
+}
+ok: [localhost] => (item={'changed': True, 'subnet': {'availability_zone': 'ap-south-1a', 'availability_zone_id': 'aps1-az1', 'available_ip_address_count': 251, 'cidr_block': '10.0.2.0/24', 'default_for_az': False, 'map_public_ip_on_launch': False, 'state': 'available', 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'owner_id': '802778636482', 'assign_ipv6_address_on_creation': False, 'ipv6_cidr_block_association_set': [], 'tags': {'Name': 'SUB2-PRI-VPCA'}, 'subnet_arn': 'arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-014ca81e19f6283d1', 'id': 'subnet-014ca81e19f6283d1', 'ipv6_cidr_block': '', 'ipv6_association_id': ''}, 'invocation': {'module_args': {'state': 'present', 'tags': {'Name': 'SUB2-PRI-VPCA'}, 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'region': 'ap-south-1', 'cidr': '10.0.2.0/24', 'az': 'ap-south-1a', 'map_public': False, 'resource_tags': {'Name': 'SUB2-PRI-VPCA'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ipv6_cidr': '', 'assign_instances_ipv6': False, 'wait': True, 'wait_timeout': 300, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': [{'subnetname': 'SUB2-PRI-VPCA'}, {'subcidr': '10.0.2.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-03f14f659c6c1c8b7', 'subtags': 'privatesubnet-vpc1', 'sumap_public': False}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "subnet_ids": {
+            "SUB1-PUB-VPCA": "subnet-0e6eaab33cdc394d6",
+            "SUB2-PRI-VPCA": "subnet-014ca81e19f6283d1"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": true,
+        "failed": false,
+        "invocation": {
+            "module_args": {
+                "assign_instances_ipv6": false,
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "az": "ap-south-1a",
+                "cidr": "10.0.2.0/24",
+                "debug_botocore_endpoint_logs": false,
+                "ec2_url": null,
+                "ipv6_cidr": "",
+                "map_public": false,
+                "profile": null,
+                "purge_tags": true,
+                "region": "ap-south-1",
+                "resource_tags": {
+                    "Name": "SUB2-PRI-VPCA"
+                },
+                "security_token": null,
+                "state": "present",
+                "tags": {
+                    "Name": "SUB2-PRI-VPCA"
+                },
+                "validate_certs": true,
+                "vpc_id": "vpc-03f14f659c6c1c8b7",
+                "wait": true,
+                "wait_timeout": 300
+            }
+        },
+        "item": [
+            {
+                "subnetname": "SUB2-PRI-VPCA"
+            },
+            {
+                "subaz": "ap-south-1a",
+                "subcidr": "10.0.2.0/24",
+                "subreg": "ap-south-1",
+                "subtags": "privatesubnet-vpc1",
+                "subvpcid": "vpc-03f14f659c6c1c8b7",
+                "sumap_public": false
+            }
+        ],
+        "subnet": {
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "ap-south-1a",
+            "availability_zone_id": "aps1-az1",
+            "available_ip_address_count": 251,
+            "cidr_block": "10.0.2.0/24",
+            "default_for_az": false,
+            "id": "subnet-014ca81e19f6283d1",
+            "ipv6_association_id": "",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_set": [],
+            "map_public_ip_on_launch": false,
+            "owner_id": "802778636482",
+            "state": "available",
+            "subnet_arn": "arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-014ca81e19f6283d1",
+            "tags": {
+                "Name": "SUB2-PRI-VPCA"
+            },
+            "vpc_id": "vpc-03f14f659c6c1c8b7"
+        }
+    }
+}
+ok: [localhost] => (item={'changed': True, 'subnet': {'availability_zone': 'ap-south-1a', 'availability_zone_id': 'aps1-az1', 'available_ip_address_count': 251, 'cidr_block': '10.0.3.0/24', 'default_for_az': False, 'map_public_ip_on_launch': False, 'state': 'available', 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'owner_id': '802778636482', 'assign_ipv6_address_on_creation': False, 'ipv6_cidr_block_association_set': [], 'tags': {'Name': 'SUB3-PRI-VPCA'}, 'subnet_arn': 'arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0f4ad444fd5ce1395', 'id': 'subnet-0f4ad444fd5ce1395', 'ipv6_cidr_block': '', 'ipv6_association_id': ''}, 'invocation': {'module_args': {'state': 'present', 'tags': {'Name': 'SUB3-PRI-VPCA'}, 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'region': 'ap-south-1', 'cidr': '10.0.3.0/24', 'az': 'ap-south-1a', 'map_public': False, 'resource_tags': {'Name': 'SUB3-PRI-VPCA'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ipv6_cidr': '', 'assign_instances_ipv6': False, 'wait': True, 'wait_timeout': 300, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': [{'subnetname': 'SUB3-PRI-VPCA'}, {'subcidr': '10.0.3.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-03f14f659c6c1c8b7', 'subtags': 'privatesubnet-vpc1', 'sumap_public': False}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "subnet_ids": {
+            "SUB1-PUB-VPCA": "subnet-0e6eaab33cdc394d6",
+            "SUB2-PRI-VPCA": "subnet-014ca81e19f6283d1",
+            "SUB3-PRI-VPCA": "subnet-0f4ad444fd5ce1395"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": true,
+        "failed": false,
+        "invocation": {
+            "module_args": {
+                "assign_instances_ipv6": false,
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "az": "ap-south-1a",
+                "cidr": "10.0.3.0/24",
+                "debug_botocore_endpoint_logs": false,
+                "ec2_url": null,
+                "ipv6_cidr": "",
+                "map_public": false,
+                "profile": null,
+                "purge_tags": true,
+                "region": "ap-south-1",
+                "resource_tags": {
+                    "Name": "SUB3-PRI-VPCA"
+                },
+                "security_token": null,
+                "state": "present",
+                "tags": {
+                    "Name": "SUB3-PRI-VPCA"
+                },
+                "validate_certs": true,
+                "vpc_id": "vpc-03f14f659c6c1c8b7",
+                "wait": true,
+                "wait_timeout": 300
+            }
+        },
+        "item": [
+            {
+                "subnetname": "SUB3-PRI-VPCA"
+            },
+            {
+                "subaz": "ap-south-1a",
+                "subcidr": "10.0.3.0/24",
+                "subreg": "ap-south-1",
+                "subtags": "privatesubnet-vpc1",
+                "subvpcid": "vpc-03f14f659c6c1c8b7",
+                "sumap_public": false
+            }
+        ],
+        "subnet": {
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "ap-south-1a",
+            "availability_zone_id": "aps1-az1",
+            "available_ip_address_count": 251,
+            "cidr_block": "10.0.3.0/24",
+            "default_for_az": false,
+            "id": "subnet-0f4ad444fd5ce1395",
+            "ipv6_association_id": "",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_set": [],
+            "map_public_ip_on_launch": false,
+            "owner_id": "802778636482",
+            "state": "available",
+            "subnet_arn": "arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0f4ad444fd5ce1395",
+            "tags": {
+                "Name": "SUB3-PRI-VPCA"
+            },
+            "vpc_id": "vpc-03f14f659c6c1c8b7"
+        }
+    }
+}
+ok: [localhost] => (item={'changed': True, 'subnet': {'availability_zone': 'ap-south-1a', 'availability_zone_id': 'aps1-az1', 'available_ip_address_count': 251, 'cidr_block': '10.1.1.0/24', 'default_for_az': False, 'map_public_ip_on_launch': False, 'state': 'available', 'vpc_id': 'vpc-0195c1d6ee5610e98', 'owner_id': '802778636482', 'assign_ipv6_address_on_creation': False, 'ipv6_cidr_block_association_set': [], 'tags': {'Name': 'SUB4-PRI-VPCB'}, 'subnet_arn': 'arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0b31ab7d107a97433', 'id': 'subnet-0b31ab7d107a97433', 'ipv6_cidr_block': '', 'ipv6_association_id': ''}, 'invocation': {'module_args': {'state': 'present', 'tags': {'Name': 'SUB4-PRI-VPCB'}, 'vpc_id': 'vpc-0195c1d6ee5610e98', 'region': 'ap-south-1', 'cidr': '10.1.1.0/24', 'az': 'ap-south-1a', 'map_public': False, 'resource_tags': {'Name': 'SUB4-PRI-VPCB'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ipv6_cidr': '', 'assign_instances_ipv6': False, 'wait': True, 'wait_timeout': 300, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': [{'subnetname': 'SUB4-PRI-VPCB'}, {'subcidr': '10.1.1.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-0195c1d6ee5610e98', 'subtags': 'privatesubnet-vpc2', 'sumap_public': False}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "subnet_ids": {
+            "SUB1-PUB-VPCA": "subnet-0e6eaab33cdc394d6",
+            "SUB2-PRI-VPCA": "subnet-014ca81e19f6283d1",
+            "SUB3-PRI-VPCA": "subnet-0f4ad444fd5ce1395",
+            "SUB4-PRI-VPCB": "subnet-0b31ab7d107a97433"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": true,
+        "failed": false,
+        "invocation": {
+            "module_args": {
+                "assign_instances_ipv6": false,
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "az": "ap-south-1a",
+                "cidr": "10.1.1.0/24",
+                "debug_botocore_endpoint_logs": false,
+                "ec2_url": null,
+                "ipv6_cidr": "",
+                "map_public": false,
+                "profile": null,
+                "purge_tags": true,
+                "region": "ap-south-1",
+                "resource_tags": {
+                    "Name": "SUB4-PRI-VPCB"
+                },
+                "security_token": null,
+                "state": "present",
+                "tags": {
+                    "Name": "SUB4-PRI-VPCB"
+                },
+                "validate_certs": true,
+                "vpc_id": "vpc-0195c1d6ee5610e98",
+                "wait": true,
+                "wait_timeout": 300
+            }
+        },
+        "item": [
+            {
+                "subnetname": "SUB4-PRI-VPCB"
+            },
+            {
+                "subaz": "ap-south-1a",
+                "subcidr": "10.1.1.0/24",
+                "subreg": "ap-south-1",
+                "subtags": "privatesubnet-vpc2",
+                "subvpcid": "vpc-0195c1d6ee5610e98",
+                "sumap_public": false
+            }
+        ],
+        "subnet": {
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "ap-south-1a",
+            "availability_zone_id": "aps1-az1",
+            "available_ip_address_count": 251,
+            "cidr_block": "10.1.1.0/24",
+            "default_for_az": false,
+            "id": "subnet-0b31ab7d107a97433",
+            "ipv6_association_id": "",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_set": [],
+            "map_public_ip_on_launch": false,
+            "owner_id": "802778636482",
+            "state": "available",
+            "subnet_arn": "arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-0b31ab7d107a97433",
+            "tags": {
+                "Name": "SUB4-PRI-VPCB"
+            },
+            "vpc_id": "vpc-0195c1d6ee5610e98"
+        }
+    }
+}
+ok: [localhost] => (item={'changed': True, 'subnet': {'availability_zone': 'ap-south-1a', 'availability_zone_id': 'aps1-az1', 'available_ip_address_count': 251, 'cidr_block': '10.1.2.0/24', 'default_for_az': False, 'map_public_ip_on_launch': False, 'state': 'available', 'vpc_id': 'vpc-0195c1d6ee5610e98', 'owner_id': '802778636482', 'assign_ipv6_address_on_creation': False, 'ipv6_cidr_block_association_set': [], 'tags': {'Name': 'SUB6-PUB-VPCB'}, 'subnet_arn': 'arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-01306dd19c6fd38a3', 'id': 'subnet-01306dd19c6fd38a3', 'ipv6_cidr_block': '', 'ipv6_association_id': ''}, 'invocation': {'module_args': {'state': 'present', 'tags': {'Name': 'SUB6-PUB-VPCB'}, 'vpc_id': 'vpc-0195c1d6ee5610e98', 'region': 'ap-south-1', 'cidr': '10.1.2.0/24', 'az': 'ap-south-1a', 'map_public': False, 'resource_tags': {'Name': 'SUB6-PUB-VPCB'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ipv6_cidr': '', 'assign_instances_ipv6': False, 'wait': True, 'wait_timeout': 300, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': [{'subnetname': 'SUB6-PUB-VPCB'}, {'subcidr': '10.1.2.0/24', 'subaz': 'ap-south-1a', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-0195c1d6ee5610e98', 'subtags': 'publicsubnet-vpc2', 'sumap_public': False}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "subnet_ids": {
+            "SUB1-PUB-VPCA": "subnet-0e6eaab33cdc394d6",
+            "SUB2-PRI-VPCA": "subnet-014ca81e19f6283d1",
+            "SUB3-PRI-VPCA": "subnet-0f4ad444fd5ce1395",
+            "SUB4-PRI-VPCB": "subnet-0b31ab7d107a97433",
+            "SUB6-PUB-VPCB": "subnet-01306dd19c6fd38a3"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": true,
+        "failed": false,
+        "invocation": {
+            "module_args": {
+                "assign_instances_ipv6": false,
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "az": "ap-south-1a",
+                "cidr": "10.1.2.0/24",
+                "debug_botocore_endpoint_logs": false,
+                "ec2_url": null,
+                "ipv6_cidr": "",
+                "map_public": false,
+                "profile": null,
+                "purge_tags": true,
+                "region": "ap-south-1",
+                "resource_tags": {
+                    "Name": "SUB6-PUB-VPCB"
+                },
+                "security_token": null,
+                "state": "present",
+                "tags": {
+                    "Name": "SUB6-PUB-VPCB"
+                },
+                "validate_certs": true,
+                "vpc_id": "vpc-0195c1d6ee5610e98",
+                "wait": true,
+                "wait_timeout": 300
+            }
+        },
+        "item": [
+            {
+                "subnetname": "SUB6-PUB-VPCB"
+            },
+            {
+                "subaz": "ap-south-1a",
+                "subcidr": "10.1.2.0/24",
+                "subreg": "ap-south-1",
+                "subtags": "publicsubnet-vpc2",
+                "subvpcid": "vpc-0195c1d6ee5610e98",
+                "sumap_public": false
+            }
+        ],
+        "subnet": {
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "ap-south-1a",
+            "availability_zone_id": "aps1-az1",
+            "available_ip_address_count": 251,
+            "cidr_block": "10.1.2.0/24",
+            "default_for_az": false,
+            "id": "subnet-01306dd19c6fd38a3",
+            "ipv6_association_id": "",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_set": [],
+            "map_public_ip_on_launch": false,
+            "owner_id": "802778636482",
+            "state": "available",
+            "subnet_arn": "arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-01306dd19c6fd38a3",
+            "tags": {
+                "Name": "SUB6-PUB-VPCB"
+            },
+            "vpc_id": "vpc-0195c1d6ee5610e98"
+        }
+    }
+}
+ok: [localhost] => (item={'changed': True, 'subnet': {'availability_zone': 'ap-south-1b', 'availability_zone_id': 'aps1-az3', 'available_ip_address_count': 251, 'cidr_block': '10.0.5.0/24', 'default_for_az': False, 'map_public_ip_on_launch': True, 'state': 'available', 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'owner_id': '802778636482', 'assign_ipv6_address_on_creation': False, 'ipv6_cidr_block_association_set': [], 'tags': {'Name': 'SUB5-PUB-VPCA'}, 'subnet_arn': 'arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-05181281f5747a923', 'id': 'subnet-05181281f5747a923', 'ipv6_cidr_block': '', 'ipv6_association_id': ''}, 'invocation': {'module_args': {'state': 'present', 'tags': {'Name': 'SUB5-PUB-VPCA'}, 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'region': 'ap-south-1', 'cidr': '10.0.5.0/24', 'az': 'ap-south-1b', 'map_public': True, 'resource_tags': {'Name': 'SUB5-PUB-VPCA'}, 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'ipv6_cidr': '', 'assign_instances_ipv6': False, 'wait': True, 'wait_timeout': 300, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None}}, 'failed': False, 'item': [{'subnetname': 'SUB5-PUB-VPCA'}, {'subcidr': '10.0.5.0/24', 'subaz': 'ap-south-1b', 'subreg': 'ap-south-1', 'subvpcid': 'vpc-03f14f659c6c1c8b7', 'subtags': 'publicsubnet-vpc1', 'sumap_public': True}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "subnet_ids": {
+            "SUB1-PUB-VPCA": "subnet-0e6eaab33cdc394d6",
+            "SUB2-PRI-VPCA": "subnet-014ca81e19f6283d1",
+            "SUB3-PRI-VPCA": "subnet-0f4ad444fd5ce1395",
+            "SUB4-PRI-VPCB": "subnet-0b31ab7d107a97433",
+            "SUB5-PUB-VPCA": "subnet-05181281f5747a923",
+            "SUB6-PUB-VPCB": "subnet-01306dd19c6fd38a3"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": true,
+        "failed": false,
+        "invocation": {
+            "module_args": {
+                "assign_instances_ipv6": false,
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "az": "ap-south-1b",
+                "cidr": "10.0.5.0/24",
+                "debug_botocore_endpoint_logs": false,
+                "ec2_url": null,
+                "ipv6_cidr": "",
+                "map_public": true,
+                "profile": null,
+                "purge_tags": true,
+                "region": "ap-south-1",
+                "resource_tags": {
+                    "Name": "SUB5-PUB-VPCA"
+                },
+                "security_token": null,
+                "state": "present",
+                "tags": {
+                    "Name": "SUB5-PUB-VPCA"
+                },
+                "validate_certs": true,
+                "vpc_id": "vpc-03f14f659c6c1c8b7",
+                "wait": true,
+                "wait_timeout": 300
+            }
+        },
+        "item": [
+            {
+                "subnetname": "SUB5-PUB-VPCA"
+            },
+            {
+                "subaz": "ap-south-1b",
+                "subcidr": "10.0.5.0/24",
+                "subreg": "ap-south-1",
+                "subtags": "publicsubnet-vpc1",
+                "subvpcid": "vpc-03f14f659c6c1c8b7",
+                "sumap_public": true
+            }
+        ],
+        "subnet": {
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "ap-south-1b",
+            "availability_zone_id": "aps1-az3",
+            "available_ip_address_count": 251,
+            "cidr_block": "10.0.5.0/24",
+            "default_for_az": false,
+            "id": "subnet-05181281f5747a923",
+            "ipv6_association_id": "",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_set": [],
+            "map_public_ip_on_launch": true,
+            "owner_id": "802778636482",
+            "state": "available",
+            "subnet_arn": "arn:aws:ec2:ap-south-1:802778636482:subnet/subnet-05181281f5747a923",
+            "tags": {
+                "Name": "SUB5-PUB-VPCA"
+            },
+            "vpc_id": "vpc-03f14f659c6c1c8b7"
+        }
+    }
+}
+
+TASK [debug set facts of subnets] *******************************************************************************************************
+task path: /etc/ansible/ap-south-1/2_auto-subnets.yaml:52
+ok: [localhost] => {
+    "msg": {
+        "SUB1-PUB-VPCA": "subnet-0e6eaab33cdc394d6",
+        "SUB2-PRI-VPCA": "subnet-014ca81e19f6283d1",
+        "SUB3-PRI-VPCA": "subnet-0f4ad444fd5ce1395",
+        "SUB4-PRI-VPCB": "subnet-0b31ab7d107a97433",
+        "SUB5-PUB-VPCA": "subnet-05181281f5747a923",
+        "SUB6-PUB-VPCB": "subnet-01306dd19c6fd38a3"
+    }
+}
+
+TASK [create webserver sec groups] ******************************************************************************************************
+task path: /etc/ansible/ap-south-1/2_auto-subnets.yaml:56
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954945.2022853-154436776462005 `" && echo ansible-tmp-1562954945.2022853-154436776462005="` echo /root/.ansible/tmp/ansible-tmp-1562954945.2022853-154436776462005 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_group.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmpxawgrpa9 TO /root/.ansible/tmp/ansible-tmp-1562954945.2022853-154436776462005/AnsiballZ_ec2_group.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954945.2022853-154436776462005/ /root/.ansible/tmp/ansible-tmp-1562954945.2022853-154436776462005/AnsiballZ_ec2_group.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954945.2022853-154436776462005/AnsiballZ_ec2_group.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954945.2022853-154436776462005/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+ok: [localhost] => (item=[{'secgrpname': 'webinst-vpca'}, {'secgrpdesc': 'sec grp for web servers for vpca', 'secvpcid': 'vpc-03f14f659c6c1c8b7', 'secregion': 'ap-south-1'}]) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "description": "sec grp for web servers for vpca",
+    "group_id": "sg-0dbb85df3c495314f",
+    "group_name": "webinst-vpca",
+    "invocation": {
+        "module_args": {
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "debug_botocore_endpoint_logs": false,
+            "description": "sec grp for web servers for vpca",
+            "ec2_url": null,
+            "group_id": null,
+            "name": "webinst-vpca",
+            "profile": null,
+            "purge_rules": true,
+            "purge_rules_egress": true,
+            "purge_tags": true,
+            "region": "ap-south-1",
+            "rules": [
+                {
+                    "cidr_ip": "0.0.0.0/0",
+                    "from_port": 80,
+                    "proto": "tcp",
+                    "to_port": 80
+                },
+                {
+                    "cidr_ip": "0.0.0.0/0",
+                    "from_port": 22,
+                    "proto": "tcp",
+                    "to_port": 22
+                }
+            ],
+            "rules_egress": null,
+            "security_token": null,
+            "state": "present",
+            "tags": null,
+            "validate_certs": true,
+            "vpc_id": "vpc-03f14f659c6c1c8b7"
+        }
+    },
+    "ip_permissions": [
+        {
+            "from_port": 80,
+            "ip_protocol": "tcp",
+            "ip_ranges": [
+                {
+                    "cidr_ip": "0.0.0.0/0"
+                }
+            ],
+            "ipv6_ranges": [],
+            "prefix_list_ids": [],
+            "to_port": 80,
+            "user_id_group_pairs": []
+        },
+        {
+            "from_port": 22,
+            "ip_protocol": "tcp",
+            "ip_ranges": [
+                {
+                    "cidr_ip": "0.0.0.0/0"
+                }
+            ],
+            "ipv6_ranges": [],
+            "prefix_list_ids": [],
+            "to_port": 22,
+            "user_id_group_pairs": []
+        }
+    ],
+    "ip_permissions_egress": [
+        {
+            "ip_protocol": "-1",
+            "ip_ranges": [
+                {
+                    "cidr_ip": "0.0.0.0/0"
+                }
+            ],
+            "ipv6_ranges": [],
+            "prefix_list_ids": [],
+            "user_id_group_pairs": []
+        }
+    ],
+    "item": [
+        {
+            "secgrpname": "webinst-vpca"
+        },
+        {
+            "secgrpdesc": "sec grp for web servers for vpca",
+            "secregion": "ap-south-1",
+            "secvpcid": "vpc-03f14f659c6c1c8b7"
+        }
+    ],
+    "owner_id": "802778636482",
+    "tags": {},
+    "vpc_id": "vpc-03f14f659c6c1c8b7"
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954947.2712004-271762431881195 `" && echo ansible-tmp-1562954947.2712004-271762431881195="` echo /root/.ansible/tmp/ansible-tmp-1562954947.2712004-271762431881195 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/cloud/amazon/ec2_group.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmp2wi7_wmi TO /root/.ansible/tmp/ansible-tmp-1562954947.2712004-271762431881195/AnsiballZ_ec2_group.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954947.2712004-271762431881195/ /root/.ansible/tmp/ansible-tmp-1562954947.2712004-271762431881195/AnsiballZ_ec2_group.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954947.2712004-271762431881195/AnsiballZ_ec2_group.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954947.2712004-271762431881195/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost] => (item=[{'secgrpname': 'webinst-vpcb'}, {'secgrpdesc': 'sec grp for web servers for vpcb', 'secvpcid': 'vpc-0195c1d6ee5610e98', 'secregion': 'ap-south-1'}]) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "description": "sec grp for web servers for vpcb",
+    "group_id": "sg-06f9387eda19c76fd",
+    "group_name": "webinst-vpcb",
+    "invocation": {
+        "module_args": {
+            "aws_access_key": null,
+            "aws_secret_key": null,
+            "debug_botocore_endpoint_logs": false,
+            "description": "sec grp for web servers for vpcb",
+            "ec2_url": null,
+            "group_id": null,
+            "name": "webinst-vpcb",
+            "profile": null,
+            "purge_rules": true,
+            "purge_rules_egress": true,
+            "purge_tags": true,
+            "region": "ap-south-1",
+            "rules": [
+                {
+                    "cidr_ip": "0.0.0.0/0",
+                    "from_port": 80,
+                    "proto": "tcp",
+                    "to_port": 80
+                },
+                {
+                    "cidr_ip": "0.0.0.0/0",
+                    "from_port": 22,
+                    "proto": "tcp",
+                    "to_port": 22
+                }
+            ],
+            "rules_egress": null,
+            "security_token": null,
+            "state": "present",
+            "tags": null,
+            "validate_certs": true,
+            "vpc_id": "vpc-0195c1d6ee5610e98"
+        }
+    },
+    "ip_permissions": [
+        {
+            "from_port": 80,
+            "ip_protocol": "tcp",
+            "ip_ranges": [
+                {
+                    "cidr_ip": "0.0.0.0/0"
+                }
+            ],
+            "ipv6_ranges": [],
+            "prefix_list_ids": [],
+            "to_port": 80,
+            "user_id_group_pairs": []
+        },
+        {
+            "from_port": 22,
+            "ip_protocol": "tcp",
+            "ip_ranges": [
+                {
+                    "cidr_ip": "0.0.0.0/0"
+                }
+            ],
+            "ipv6_ranges": [],
+            "prefix_list_ids": [],
+            "to_port": 22,
+            "user_id_group_pairs": []
+        }
+    ],
+    "ip_permissions_egress": [
+        {
+            "ip_protocol": "-1",
+            "ip_ranges": [
+                {
+                    "cidr_ip": "0.0.0.0/0"
+                }
+            ],
+            "ipv6_ranges": [],
+            "prefix_list_ids": [],
+            "user_id_group_pairs": []
+        }
+    ],
+    "item": [
+        {
+            "secgrpname": "webinst-vpcb"
+        },
+        {
+            "secgrpdesc": "sec grp for web servers for vpcb",
+            "secregion": "ap-south-1",
+            "secvpcid": "vpc-0195c1d6ee5610e98"
+        }
+    ],
+    "owner_id": "802778636482",
+    "tags": {},
+    "vpc_id": "vpc-0195c1d6ee5610e98"
+}
+
+TASK [set facts of webservers_group] ****************************************************************************************************
+task path: /etc/ansible/ap-south-1/2_auto-subnets.yaml:77
+ok: [localhost] => (item={'changed': False, 'description': 'sec grp for web servers for vpca', 'group_name': 'webinst-vpca', 'ip_permissions': [{'from_port': 80, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '0.0.0.0/0'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 80, 'user_id_group_pairs': []}, {'from_port': 22, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '0.0.0.0/0'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 22, 'user_id_group_pairs': []}], 'owner_id': '802778636482', 'group_id': 'sg-0dbb85df3c495314f', 'ip_permissions_egress': [{'ip_protocol': '-1', 'ip_ranges': [{'cidr_ip': '0.0.0.0/0'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'user_id_group_pairs': []}], 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'tags': {}, 'invocation': {'module_args': {'name': 'webinst-vpca', 'description': 'sec grp for web servers for vpca', 'region': 'ap-south-1', 'vpc_id': 'vpc-03f14f659c6c1c8b7', 'rules': [{'proto': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_ip': '0.0.0.0/0'}, {'proto': 'tcp', 'from_port': 22, 'to_port': 22, 'cidr_ip': '0.0.0.0/0'}], 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'state': 'present', 'purge_rules': True, 'purge_rules_egress': True, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'group_id': None, 'rules_egress': None, 'tags': None}}, 'failed': False, 'item': [{'secgrpname': 'webinst-vpca'}, {'secgrpdesc': 'sec grp for web servers for vpca', 'secvpcid': 'vpc-03f14f659c6c1c8b7', 'secregion': 'ap-south-1'}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "apsouth1_secgrps": {
+            "webinst-vpca": "sg-0dbb85df3c495314f"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "description": "sec grp for web servers for vpca",
+        "failed": false,
+        "group_id": "sg-0dbb85df3c495314f",
+        "group_name": "webinst-vpca",
+        "invocation": {
+            "module_args": {
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "debug_botocore_endpoint_logs": false,
+                "description": "sec grp for web servers for vpca",
+                "ec2_url": null,
+                "group_id": null,
+                "name": "webinst-vpca",
+                "profile": null,
+                "purge_rules": true,
+                "purge_rules_egress": true,
+                "purge_tags": true,
+                "region": "ap-south-1",
+                "rules": [
+                    {
+                        "cidr_ip": "0.0.0.0/0",
+                        "from_port": 80,
+                        "proto": "tcp",
+                        "to_port": 80
+                    },
+                    {
+                        "cidr_ip": "0.0.0.0/0",
+                        "from_port": 22,
+                        "proto": "tcp",
+                        "to_port": 22
+                    }
+                ],
+                "rules_egress": null,
+                "security_token": null,
+                "state": "present",
+                "tags": null,
+                "validate_certs": true,
+                "vpc_id": "vpc-03f14f659c6c1c8b7"
+            }
+        },
+        "ip_permissions": [
+            {
+                "from_port": 80,
+                "ip_protocol": "tcp",
+                "ip_ranges": [
+                    {
+                        "cidr_ip": "0.0.0.0/0"
+                    }
+                ],
+                "ipv6_ranges": [],
+                "prefix_list_ids": [],
+                "to_port": 80,
+                "user_id_group_pairs": []
+            },
+            {
+                "from_port": 22,
+                "ip_protocol": "tcp",
+                "ip_ranges": [
+                    {
+                        "cidr_ip": "0.0.0.0/0"
+                    }
+                ],
+                "ipv6_ranges": [],
+                "prefix_list_ids": [],
+                "to_port": 22,
+                "user_id_group_pairs": []
+            }
+        ],
+        "ip_permissions_egress": [
+            {
+                "ip_protocol": "-1",
+                "ip_ranges": [
+                    {
+                        "cidr_ip": "0.0.0.0/0"
+                    }
+                ],
+                "ipv6_ranges": [],
+                "prefix_list_ids": [],
+                "user_id_group_pairs": []
+            }
+        ],
+        "item": [
+            {
+                "secgrpname": "webinst-vpca"
+            },
+            {
+                "secgrpdesc": "sec grp for web servers for vpca",
+                "secregion": "ap-south-1",
+                "secvpcid": "vpc-03f14f659c6c1c8b7"
+            }
+        ],
+        "owner_id": "802778636482",
+        "tags": {},
+        "vpc_id": "vpc-03f14f659c6c1c8b7"
+    }
+}
+ok: [localhost] => (item={'changed': False, 'description': 'sec grp for web servers for vpcb', 'group_name': 'webinst-vpcb', 'ip_permissions': [{'from_port': 80, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '0.0.0.0/0'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 80, 'user_id_group_pairs': []}, {'from_port': 22, 'ip_protocol': 'tcp', 'ip_ranges': [{'cidr_ip': '0.0.0.0/0'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'to_port': 22, 'user_id_group_pairs': []}], 'owner_id': '802778636482', 'group_id': 'sg-06f9387eda19c76fd', 'ip_permissions_egress': [{'ip_protocol': '-1', 'ip_ranges': [{'cidr_ip': '0.0.0.0/0'}], 'ipv6_ranges': [], 'prefix_list_ids': [], 'user_id_group_pairs': []}], 'vpc_id': 'vpc-0195c1d6ee5610e98', 'tags': {}, 'invocation': {'module_args': {'name': 'webinst-vpcb', 'description': 'sec grp for web servers for vpcb', 'region': 'ap-south-1', 'vpc_id': 'vpc-0195c1d6ee5610e98', 'rules': [{'proto': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_ip': '0.0.0.0/0'}, {'proto': 'tcp', 'from_port': 22, 'to_port': 22, 'cidr_ip': '0.0.0.0/0'}], 'debug_botocore_endpoint_logs': False, 'validate_certs': True, 'state': 'present', 'purge_rules': True, 'purge_rules_egress': True, 'purge_tags': True, 'ec2_url': None, 'aws_secret_key': None, 'aws_access_key': None, 'security_token': None, 'profile': None, 'group_id': None, 'rules_egress': None, 'tags': None}}, 'failed': False, 'item': [{'secgrpname': 'webinst-vpcb'}, {'secgrpdesc': 'sec grp for web servers for vpcb', 'secvpcid': 'vpc-0195c1d6ee5610e98', 'secregion': 'ap-south-1'}], 'ansible_loop_var': 'item'}) => {
+    "ansible_facts": {
+        "apsouth1_secgrps": {
+            "webinst-vpca": "sg-0dbb85df3c495314f",
+            "webinst-vpcb": "sg-06f9387eda19c76fd"
+        }
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "description": "sec grp for web servers for vpcb",
+        "failed": false,
+        "group_id": "sg-06f9387eda19c76fd",
+        "group_name": "webinst-vpcb",
+        "invocation": {
+            "module_args": {
+                "aws_access_key": null,
+                "aws_secret_key": null,
+                "debug_botocore_endpoint_logs": false,
+                "description": "sec grp for web servers for vpcb",
+                "ec2_url": null,
+                "group_id": null,
+                "name": "webinst-vpcb",
+                "profile": null,
+                "purge_rules": true,
+                "purge_rules_egress": true,
+                "purge_tags": true,
+                "region": "ap-south-1",
+                "rules": [
+                    {
+                        "cidr_ip": "0.0.0.0/0",
+                        "from_port": 80,
+                        "proto": "tcp",
+                        "to_port": 80
+                    },
+                    {
+                        "cidr_ip": "0.0.0.0/0",
+                        "from_port": 22,
+                        "proto": "tcp",
+                        "to_port": 22
+                    }
+                ],
+                "rules_egress": null,
+                "security_token": null,
+                "state": "present",
+                "tags": null,
+                "validate_certs": true,
+                "vpc_id": "vpc-0195c1d6ee5610e98"
+            }
+        },
+        "ip_permissions": [
+            {
+                "from_port": 80,
+                "ip_protocol": "tcp",
+                "ip_ranges": [
+                    {
+                        "cidr_ip": "0.0.0.0/0"
+                    }
+                ],
+                "ipv6_ranges": [],
+                "prefix_list_ids": [],
+                "to_port": 80,
+                "user_id_group_pairs": []
+            },
+            {
+                "from_port": 22,
+                "ip_protocol": "tcp",
+                "ip_ranges": [
+                    {
+                        "cidr_ip": "0.0.0.0/0"
+                    }
+                ],
+                "ipv6_ranges": [],
+                "prefix_list_ids": [],
+                "to_port": 22,
+                "user_id_group_pairs": []
+            }
+        ],
+        "ip_permissions_egress": [
+            {
+                "ip_protocol": "-1",
+                "ip_ranges": [
+                    {
+                        "cidr_ip": "0.0.0.0/0"
+                    }
+                ],
+                "ipv6_ranges": [],
+                "prefix_list_ids": [],
+                "user_id_group_pairs": []
+            }
+        ],
+        "item": [
+            {
+                "secgrpname": "webinst-vpcb"
+            },
+            {
+                "secgrpdesc": "sec grp for web servers for vpcb",
+                "secregion": "ap-south-1",
+                "secvpcid": "vpc-0195c1d6ee5610e98"
+            }
+        ],
+        "owner_id": "802778636482",
+        "tags": {},
+        "vpc_id": "vpc-0195c1d6ee5610e98"
+    }
+}
+
+TASK [debugapsouth1_secgrps] ************************************************************************************************************
+task path: /etc/ansible/ap-south-1/2_auto-subnets.yaml:82
+ok: [localhost] => (item={'key': 'webinst-vpca', 'value': 'sg-0dbb85df3c495314f'}) => {
+    "msg": "webinst-vpca : sg-0dbb85df3c495314f"
+}
+ok: [localhost] => (item={'key': 'webinst-vpcb', 'value': 'sg-06f9387eda19c76fd'}) => {
+    "msg": "webinst-vpcb : sg-06f9387eda19c76fd"
+}
+
+TASK [copy var file all2.yaml to all3.yaml] *********************************************************************************************
+task path: /etc/ansible/ap-south-1/2_auto-subnets.yaml:89
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262 `" && echo ansible-tmp-1562954949.2127109-3070009132262="` echo /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/stat.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmpps6ncdwh TO /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/AnsiballZ_stat.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/ /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/AnsiballZ_stat.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/AnsiballZ_stat.py && sleep 0'
+<127.0.0.1> PUT /etc/ansible/ap-south-1/group_vars/all2.yaml TO /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/source
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/ /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/source && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/copy.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmpzurxqatk TO /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/AnsiballZ_copy.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/ /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/AnsiballZ_copy.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/AnsiballZ_copy.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => {
+    "changed": true,
+    "checksum": "499b8781d394e2ba40ac4f6d268a77953d317686",
+    "dest": "/etc/ansible/ap-south-1/group_vars/all3.yaml",
+    "diff": [],
+    "gid": 0,
+    "group": "root",
+    "invocation": {
+        "module_args": {
+            "_original_basename": "all2.yaml",
+            "attributes": null,
+            "backup": false,
+            "checksum": "499b8781d394e2ba40ac4f6d268a77953d317686",
+            "content": null,
+            "delimiter": null,
+            "dest": "/etc/ansible/ap-south-1/group_vars/all3.yaml",
+            "directory_mode": null,
+            "follow": true,
+            "force": true,
+            "group": null,
+            "local_follow": null,
+            "mode": null,
+            "owner": null,
+            "regexp": null,
+            "remote_src": null,
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": "/root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/source",
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "md5sum": "46827d74b561eea3d6e954eefd8c111f",
+    "mode": "0644",
+    "owner": "root",
+    "secontext": "system_u:object_r:etc_t:s0",
+    "size": 6903,
+    "src": "/root/.ansible/tmp/ansible-tmp-1562954949.2127109-3070009132262/source",
+    "state": "file",
+    "uid": 0
+}
+
+TASK [replace subnet names with subnet id's in var file all3.yaml] **********************************************************************
+task path: /etc/ansible/ap-south-1/2_auto-subnets.yaml:96
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954950.0642874-165618964392117 `" && echo ansible-tmp-1562954950.0642874-165618964392117="` echo /root/.ansible/tmp/ansible-tmp-1562954950.0642874-165618964392117 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmpizf0tk9w TO /root/.ansible/tmp/ansible-tmp-1562954950.0642874-165618964392117/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954950.0642874-165618964392117/ /root/.ansible/tmp/ansible-tmp-1562954950.0642874-165618964392117/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954950.0642874-165618964392117/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954950.0642874-165618964392117/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item={'key': 'SUB1-PUB-VPCA', 'value': 'subnet-0e6eaab33cdc394d6'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all3.yaml",
+            "regexp": "SUB1-PUB-VPCA",
+            "remote_src": null,
+            "replace": "subnet-0e6eaab33cdc394d6",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "SUB1-PUB-VPCA",
+        "value": "subnet-0e6eaab33cdc394d6"
+    },
+    "msg": "4 replacements made"
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954950.4765904-208883466405038 `" && echo ansible-tmp-1562954950.4765904-208883466405038="` echo /root/.ansible/tmp/ansible-tmp-1562954950.4765904-208883466405038 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmpb_6mqzs_ TO /root/.ansible/tmp/ansible-tmp-1562954950.4765904-208883466405038/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954950.4765904-208883466405038/ /root/.ansible/tmp/ansible-tmp-1562954950.4765904-208883466405038/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954950.4765904-208883466405038/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954950.4765904-208883466405038/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item={'key': 'SUB2-PRI-VPCA', 'value': 'subnet-014ca81e19f6283d1'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all3.yaml",
+            "regexp": "SUB2-PRI-VPCA",
+            "remote_src": null,
+            "replace": "subnet-014ca81e19f6283d1",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "SUB2-PRI-VPCA",
+        "value": "subnet-014ca81e19f6283d1"
+    },
+    "msg": "2 replacements made"
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954950.704804-32843973760358 `" && echo ansible-tmp-1562954950.704804-32843973760358="` echo /root/.ansible/tmp/ansible-tmp-1562954950.704804-32843973760358 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmpxx5we0i4 TO /root/.ansible/tmp/ansible-tmp-1562954950.704804-32843973760358/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954950.704804-32843973760358/ /root/.ansible/tmp/ansible-tmp-1562954950.704804-32843973760358/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954950.704804-32843973760358/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954950.704804-32843973760358/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item={'key': 'SUB3-PRI-VPCA', 'value': 'subnet-0f4ad444fd5ce1395'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all3.yaml",
+            "regexp": "SUB3-PRI-VPCA",
+            "remote_src": null,
+            "replace": "subnet-0f4ad444fd5ce1395",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "SUB3-PRI-VPCA",
+        "value": "subnet-0f4ad444fd5ce1395"
+    },
+    "msg": "5 replacements made"
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954950.9309127-268667312787469 `" && echo ansible-tmp-1562954950.9309127-268667312787469="` echo /root/.ansible/tmp/ansible-tmp-1562954950.9309127-268667312787469 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmp6641x0_a TO /root/.ansible/tmp/ansible-tmp-1562954950.9309127-268667312787469/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954950.9309127-268667312787469/ /root/.ansible/tmp/ansible-tmp-1562954950.9309127-268667312787469/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954950.9309127-268667312787469/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954950.9309127-268667312787469/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item={'key': 'SUB4-PRI-VPCB', 'value': 'subnet-0b31ab7d107a97433'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all3.yaml",
+            "regexp": "SUB4-PRI-VPCB",
+            "remote_src": null,
+            "replace": "subnet-0b31ab7d107a97433",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "SUB4-PRI-VPCB",
+        "value": "subnet-0b31ab7d107a97433"
+    },
+    "msg": "2 replacements made"
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954951.1550586-55534819842142 `" && echo ansible-tmp-1562954951.1550586-55534819842142="` echo /root/.ansible/tmp/ansible-tmp-1562954951.1550586-55534819842142 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmpkvzqv6ak TO /root/.ansible/tmp/ansible-tmp-1562954951.1550586-55534819842142/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954951.1550586-55534819842142/ /root/.ansible/tmp/ansible-tmp-1562954951.1550586-55534819842142/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954951.1550586-55534819842142/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954951.1550586-55534819842142/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item={'key': 'SUB6-PUB-VPCB', 'value': 'subnet-01306dd19c6fd38a3'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all3.yaml",
+            "regexp": "SUB6-PUB-VPCB",
+            "remote_src": null,
+            "replace": "subnet-01306dd19c6fd38a3",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "SUB6-PUB-VPCB",
+        "value": "subnet-01306dd19c6fd38a3"
+    },
+    "msg": "3 replacements made"
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954951.3825493-272229416338338 `" && echo ansible-tmp-1562954951.3825493-272229416338338="` echo /root/.ansible/tmp/ansible-tmp-1562954951.3825493-272229416338338 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmp92ml22ts TO /root/.ansible/tmp/ansible-tmp-1562954951.3825493-272229416338338/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954951.3825493-272229416338338/ /root/.ansible/tmp/ansible-tmp-1562954951.3825493-272229416338338/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954951.3825493-272229416338338/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954951.3825493-272229416338338/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item={'key': 'SUB5-PUB-VPCA', 'value': 'subnet-05181281f5747a923'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all3.yaml",
+            "regexp": "SUB5-PUB-VPCA",
+            "remote_src": null,
+            "replace": "subnet-05181281f5747a923",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "SUB5-PUB-VPCA",
+        "value": "subnet-05181281f5747a923"
+    },
+    "msg": "3 replacements made"
+}
+
+TASK [replace webserv sec grp names with sec grp ids in var file all3.yaml] *************************************************************
+task path: /etc/ansible/ap-south-1/2_auto-subnets.yaml:104
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954951.6602461-22739160000185 `" && echo ansible-tmp-1562954951.6602461-22739160000185="` echo /root/.ansible/tmp/ansible-tmp-1562954951.6602461-22739160000185 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmp2ga7pfq1 TO /root/.ansible/tmp/ansible-tmp-1562954951.6602461-22739160000185/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954951.6602461-22739160000185/ /root/.ansible/tmp/ansible-tmp-1562954951.6602461-22739160000185/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954951.6602461-22739160000185/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954951.6602461-22739160000185/ > /dev/null 2>&1 && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+changed: [localhost] => (item={'key': 'webinst-vpca', 'value': 'sg-0dbb85df3c495314f'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all3.yaml",
+            "regexp": "webinst-vpca",
+            "remote_src": null,
+            "replace": "sg-0dbb85df3c495314f",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "webinst-vpca",
+        "value": "sg-0dbb85df3c495314f"
+    },
+    "msg": "3 replacements made"
+}
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1562954951.8858497-249847252050549 `" && echo ansible-tmp-1562954951.8858497-249847252050549="` echo /root/.ansible/tmp/ansible-tmp-1562954951.8858497-249847252050549 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.6/site-packages/ansible/modules/files/replace.py
+<127.0.0.1> PUT /root/.ansible/tmp/ansible-local-2349rgw1xofq/tmpo_kgs5u7 TO /root/.ansible/tmp/ansible-tmp-1562954951.8858497-249847252050549/AnsiballZ_replace.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1562954951.8858497-249847252050549/ /root/.ansible/tmp/ansible-tmp-1562954951.8858497-249847252050549/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3.6 /root/.ansible/tmp/ansible-tmp-1562954951.8858497-249847252050549/AnsiballZ_replace.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1562954951.8858497-249847252050549/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => (item={'key': 'webinst-vpcb', 'value': 'sg-06f9387eda19c76fd'}) => {
+    "ansible_loop_var": "item",
+    "changed": true,
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "attributes": null,
+            "backup": false,
+            "before": null,
+            "content": null,
+            "delimiter": null,
+            "directory_mode": null,
+            "encoding": "utf-8",
+            "follow": false,
+            "force": null,
+            "group": null,
+            "mode": null,
+            "owner": null,
+            "path": "/etc/ansible/ap-south-1/group_vars/all3.yaml",
+            "regexp": "webinst-vpcb",
+            "remote_src": null,
+            "replace": "sg-06f9387eda19c76fd",
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "unsafe_writes": null,
+            "validate": null
+        }
+    },
+    "item": {
+        "key": "webinst-vpcb",
+        "value": "sg-06f9387eda19c76fd"
+    },
+    "msg": "1 replacements made"
+}
+META: ran handlers
+META: ran handlers
+
+PLAY RECAP ******************************************************************************************************************************
+localhost                  : ok=11   changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

@@ -1,0 +1,11 @@
+---
+  - hosts: localhost
+    connection: local
+    become: true
+    tasks:
+      - name: replace subnet names with subnet id's in var file all3.yaml
+        replace:
+          path: /etc/ansible/ap-south-1/group_vars/all1.yaml
+          regexp: ami-5b673c34 
+          replace: ami-0a74bfeb190bd404f
+
